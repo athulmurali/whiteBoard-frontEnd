@@ -4,15 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import {routing} from './app.routing';
+import { CourseViewComponent } from './course-view/course-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseGridComponent,
-    NavBarComponent
+    NavBarComponent,
+    NotFoundComponent,
+    CourseViewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]

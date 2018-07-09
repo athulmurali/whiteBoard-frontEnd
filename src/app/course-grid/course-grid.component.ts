@@ -7,17 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseGridComponent implements OnInit {
 
-  courses =[
+  courses = [
     {
-      title : "Web dev -Summer 1",
-      isPrivate :true
+      title : 'Web dev - Summer 1',
+      isPrivate : true,
+      id : 1
     },
     {
-      title :"DBMS",
-      isPrivate :false
+      title : 'DBMS',
+      isPrivate : false,
+      id : 2
 
     }
-  ]
+  ];
 
   constructor() { }
 
