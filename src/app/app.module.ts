@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {routing} from './app.routing';
 import { CourseViewComponent } from './course-view/course-view.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CourseViewComponent } from './course-view/course-view.component';
     CourseGridComponent,
     NavBarComponent,
     NotFoundComponent,
-    CourseViewComponent
+    CourseViewComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
