@@ -1,0 +1,94 @@
+
+<div class="user">
+  <header class="user__header">
+    <img src="https://cdn1.imggmi.com/uploads/2018/5/17/0d35483b3ee286472ca7081cff19cc85-full.png" alt="" />
+    <h1 >Sign Up !</h1>
+  </header>
+
+  <div id="formContainer">
+
+    <form class="form" id ="userForm">
+      <div class="form__group">
+        <input type="text" placeholder="Username" class="form__input"  id="username"/>
+        <small id="userNameHelp" class="text-muted">
+          userName must be alphanumeric
+        </small>
+
+      </div>
+
+      <div class="form__group">
+        <input type="text" placeholder="First Name" class="form__input" id="firstName"/>
+      </div>
+
+      <div class="form__group">
+        <input type="text" placeholder="Last Name" class="form__input" id="lastName"/>
+      </div>
+
+
+      <div class="form__group">
+        <input type="email" placeholder="Email" class="form__input" id="email"/>
+        <span  id="emailAvailable"></span>
+      </div>
+
+      <div class="form__group">
+        <input type="password" placeholder="Password" class="form__input" id="password"/>
+        <small id="passwordHelp" class="text-muted">
+          Must be 8-20 characters long.
+        </small>
+
+      </div>
+
+
+      <div class="form__group">
+        <input type="password" placeholder="confirm password" class="form__input" id="confirmPassword"/>
+      </div>
+
+
+
+
+
+      <div class="form__group">
+        <input type="tel" placeholder="Mobile Number" class="form__input" id="phoneNo"/>
+      </div>
+      <small id="phoneNoHelp" class="text-muted">
+        Must be valid 10 digit phone number
+      </small>
+
+
+      <div class="form_group">
+        <label> Date of birth</label>
+
+        <input id="dob" type="date" style="border-radius: 5px">
+      </div>
+
+      <div class="form_group">
+
+        <select id="role"  class="form__input">
+          <option value="student" selected >student</option>
+          <option value="admin">admin</option>
+          <option value="faculty">faculty</option>
+
+        </select>
+      </div>
+
+
+      <button class="btn" type="button" id="register">Register</button>
+    </form>
+
+    <div class="card rounded" id="successCard" style="display: none;">
+      <div class="card-img-top row">
+
+        <i class="mx-auto fas fa-check-circle fa-6x" style="padding: 10%"></i>
+      </div>
+
+      <div class="card-body ">
+        <h5 class="card-title">Registration Successful! </h5>
+        <p class="card-text">An activation mail has been sent to your registered email. It should be there within 5 minutes. Please check your inbox. </p>
+        <a href="#" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

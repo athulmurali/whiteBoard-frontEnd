@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {routing} from './app.routing';
 import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserLoginComponent } from './user-login/user-login.component';
     NavBarComponent,
     NotFoundComponent,
     CourseViewComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
