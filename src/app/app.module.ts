@@ -9,6 +9,7 @@ import {routing} from './app.routing';
 import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     NotFoundComponent,
     CourseViewComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,
