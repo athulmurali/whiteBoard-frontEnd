@@ -9,6 +9,8 @@ import {ActivatedRoute} from '@angular/router';
 export class CourseViewComponent implements OnInit {
 
   courseId  = -1;
+  availableSeats = 10;
+  test = true;
   constructor(private  route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.loadCourse(params['courseId']);

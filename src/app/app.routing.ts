@@ -16,7 +16,6 @@ const appRoutes: Routes = [
 
   { path: 'home', component: CourseGridComponent},
     { path: 'happy', component: CourseGridComponent},
-    { path: 'happy', component: CourseGridComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
 
     { path: '404', component: NotFoundComponent},
