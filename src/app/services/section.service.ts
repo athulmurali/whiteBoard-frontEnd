@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class CourseServiceService {
+export class SectionService {
 
   constructor() { }
-
-  someMethod() {
-    return true;
-  }
 }

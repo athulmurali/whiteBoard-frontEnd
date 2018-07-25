@@ -22,10 +22,14 @@ export class CourseGridComponent implements OnInit {
 
     }
   ];
+  private loaded: boolean;
+  constructor(private _courseService: CourseServiceService) {
 
-  constructor() { }
+  }
 
   ngOnInit() {
+    this.loaded = this._courseService.someMethod();
+    console.log('loaded on init: ', this.loaded);
   }
 
 }
