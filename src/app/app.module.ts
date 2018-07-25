@@ -13,7 +13,6 @@ import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
-import { DialogOverviewExampleComponent } from './dialog-overview-example/dialog-overview-example.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { DialogOverviewExampleComponent } from './dialog-overview-example/dialog
     UserLoginComponent,
     UserRegisterComponent,
     StudentProfileComponent,
-    DialogOverviewExampleComponent
   ],
   imports: [
     BrowserModule,
