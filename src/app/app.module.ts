@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { AppComponent } from './app.component';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -10,6 +13,7 @@ import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { DialogOverviewExampleComponent } from './dialog-overview-example/dialog-overview-example.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +24,13 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     CourseViewComponent,
     UserLoginComponent,
     UserRegisterComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    DialogOverviewExampleComponent
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,3 +4,7 @@
   left: -2px;
   align-self: right;
 }
+
+.card-img-top{
+  max-height:200px;
+}

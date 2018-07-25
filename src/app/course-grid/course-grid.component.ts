@@ -23,13 +23,43 @@ export class CourseGridComponent implements OnInit {
     }
   ];
   private loaded: boolean;
+  private courseService: any;
+  private loading: any;
+  private coursesReceived: any;
   constructor(private _courseService: CourseServiceService) {
+
+    // this.courseService = CourseServiceService.instance;
 
   }
 
   ngOnInit() {
-    this.loaded = this._courseService.someMethod();
     console.log('loaded on init: ', this.loaded);
+    console.log('Getting course list from server ......');
+
+    this.getAllCoursesFromServer();
   }
+
+
+
+  getAllCoursesFromServer = () => {
+    this.loading = true;
+
+    console.log(this)
+
+    console.log('Getting course list from server ......');
+
+    this._courseService.findAllCourses()
+      .then((coursesReceived) => {
+
+        this.coursesReceived = coursesReceived;
+        console.log(coursesReceived)
+
+        this.loading = false;
+      });
+
+
+
+  }
+
 
 }

@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'studentProfile', component: StudentProfileComponent},
 
 
-  { path: 'home', component: CourseGridComponent},
+    { path: 'home', component: CourseGridComponent},
     { path: 'happy', component: CourseGridComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
 
