@@ -13,6 +13,11 @@ import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CourseListComponent } from './course-list/course-list.component';
+import { EditSectionComponent } from './edit-section/edit-section.component';
+import { SectionListComponent } from './section-list/section-list.component';
+
 
 @NgModule({
   declarations: [
@@ -24,11 +29,15 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     UserLoginComponent,
     UserRegisterComponent,
     StudentProfileComponent,
+    CourseListComponent,
+    EditSectionComponent,
+    SectionListComponent,
   ],
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,5 @@
+.clickableRow{
+  cursor: pointer;
+
+  border : solid black 0.1px;
+}

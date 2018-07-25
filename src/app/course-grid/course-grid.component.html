@@ -5,13 +5,7 @@
 
 
     <h4>Currently enrolled</h4>
-
-
-
     <div class="card-deck">
-
-
-
 
         <div class="card"  *ngFor="let course of courses">
           <img class="card-img-top" src="https://picsum.photos/300/100"
@@ -34,11 +28,13 @@
           </div>
           <div class="card-footer">
             <small class="text-muted">Last updated 3 mins ago</small>
+            <a href="#" class="mx-2 btn btn-primary">Un-enroll</a>
+
           </div>
         </div>
       </div>
 
-      <h4>Available courses</h4>
+    <h4>Available courses</h4>
     <div class="card-deck">
         <div class="card"  *ngFor="let course of courses">
           <img class="card-img-top" src="https://picsum.photos/300/300"
@@ -55,4 +51,5 @@
           </div>
         </div>
       </div>
+
   </div>

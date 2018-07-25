@@ -1,0 +1,36 @@
+<h4>Sections  </h4>
+
+
+
+
+<div  class="row  card-body" >
+
+
+
+
+  <div class="col-6"> <h5>Title</h5></div>
+  <div class="col-3"> <h5 >TotalSeats</h5></div>
+  <div class="col-3"> <h5 >EnrolledSeats</h5></div>
+
+
+</div>
+
+
+  <div  class="row clickableRow card-body" *ngFor="let section of sections" (click)="onClickSection(section.id)">
+
+    <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
+
+
+
+    <div class="col-6"> <h5>{{section.title}}</h5></div>
+      <div class="col-3"> <h5 >{{section.totalSeats}}</h5></div>
+      <div class="col-3"> <h5 >{{section.enrolledSeats}}</h5></div>
+    <!--</a>-->
+
+
+  </div>
+
+
+
+
+

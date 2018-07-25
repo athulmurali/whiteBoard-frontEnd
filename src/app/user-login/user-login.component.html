@@ -2,7 +2,7 @@
 <div class="container user">
   <form class="form">
 
-    <div class ="row col" id="invalidCredentialsUser" style="display: none">
+    <div class ="row col" id="invalidCredentialsUser" *ngIf="loginError" >
       <div class="form__group">
         <label>
           <h6> Error : invalid username or password!</h6>
@@ -18,7 +18,7 @@
       <input type="password"  id="password" placeholder="Password" class="form__input" />
     </div>
 
-    <button id="login" class="btn" type="button">Login</button>
+    <button id="login" class="btn" type="button" (click)="onClickLogin()">Login</button>
 
     <div class ="row">
 

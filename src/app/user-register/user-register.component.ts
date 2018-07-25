@@ -7,7 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRegisterComponent implements OnInit {
 
+  private courses = [
+    {
+      title : 'Web dev - Summer 1',
+      isPrivate : true,
+      id : 1
+    },
+    {
+      title : 'DBMS',
+      isPrivate : false,
+      id : 2
+
+    }
+  ];
+
+
   constructor() { }
+
+  private passwordConfirmed = false;
+  private userNameTaken = false;
 
   ngOnInit() {
   }
