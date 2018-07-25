@@ -8,6 +8,17 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CourseViewComponent implements OnInit {
 
+  // noinspection JSAnnotator
+  student: {
+    id: -1,
+    enrolledCourses: {}
+  };
+
+  course: {
+    id: -1,
+    availableSeats: 10
+
+  };
   courseId  = -1;
   availableSeats = 10;
   test = true;
