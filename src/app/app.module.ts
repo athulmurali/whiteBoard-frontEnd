@@ -13,11 +13,13 @@ import { CourseViewComponent } from './course-view/course-view.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { EditSectionComponent } from './edit-section/edit-section.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import {CourseServiceService} from './services/course-service.service';
 import { PrivateContentBannerComponent } from './private-content-banner/private-content-banner.component';
+import {UserService} from './services/user.service';
+import {AuthInterceptor} from './services/auth.interceptor';
 
 
 @NgModule({
@@ -40,7 +42,13 @@ import { PrivateContentBannerComponent } from './private-content-banner/private-
     FormsModule,
     HttpClientModule
   ],
-  providers: [CourseServiceService],
+  providers: [CourseServiceService,
+    {
+     provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi: true
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

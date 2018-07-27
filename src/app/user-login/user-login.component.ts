@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
+import {SectionService} from '../services/section.service';
+import {TOKEN_NAME} from '../constants/http';
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
+
+
 export class UserLoginComponent implements OnInit {
 
   private loginError = false;
@@ -14,13 +18,19 @@ export class UserLoginComponent implements OnInit {
     username : '',
     password : ''
   };
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService, private  sectionService: SectionService) { }
 
   onClickLogin() {
     // if(true) {this.router.navigate(['/studentProfile']); } else { this.loginError = true; }
-    console.log(this.userCredentials)
-    alert(this.userCredentials.username)
+    console.log(this.userCredentials);
     // this.router.navigate(['/studentProfile']);
+    this.userService.loginUser(this.userCredentials).subscribe(
+      data => {
+      localStorage.setItem(TOKEN_NAME, data.token);
+      console.log(data);
+      this.router.navigate(['/studentProfile']);
+    },
+        error => { this.loginError = true; console.log(error.toString()); });
   }
   ngOnInit() {
   }

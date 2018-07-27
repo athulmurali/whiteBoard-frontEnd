@@ -5,7 +5,7 @@
 
     <h3 class="display-4"> Edit profile</h3>
   </div>
-  <div class="row align-items-center col align-self-center">
+  <div *ngIf="profile" class="row align-items-center col align-self-center">
     <div class="col">
 
       <div class="card hovercard rounded">
@@ -17,19 +17,18 @@
         </div>
         <div class="info">
           <div class="title">
-            <a target="_blank" href="http://scripteden.com/">John Doe</a>
-
-
+            <a target="_blank" href="http://scripteden.com/">{{profile.firstName}} {{profile.lastName}}</a>
           </div>
           <a href="#">
             <i class="fas fa-edit"></i>
 
           </a>
+          <div class="desc"> {{profile.username}}</div>
 
-          <div class="desc">Passionate designer</div>
-          <div class="desc">Curious developer</div>
-          <div class="desc">Tech geek</div>
-          <div class="desc">Birthday : </div>
+
+          <div class="desc">{{profile.email}}</div>
+          <div class="desc"> {{profile.phone}}</div>
+          <div class="desc">Birthday : {{profile.dob}} </div>
 
         </div>
         <div class="bottom">
