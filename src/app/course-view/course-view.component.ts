@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CourseServiceService} from '../services/course-service.service';
 import {Course} from '../models/Course';
 import {Module} from '../models/Module';
@@ -13,6 +13,8 @@ import {Widget} from '../models/Widget';
   styleUrls: ['./course-view.component.css']
 })
 export class CourseViewComponent implements OnInit {
+
+  isUserLoggedIn: boolean;
 
   // noinspection JSAnnotator
   student: {
@@ -43,7 +45,8 @@ export class CourseViewComponent implements OnInit {
   selectedTopicId: number;
 
 
-  constructor(private  route: ActivatedRoute, private _courseService: CourseServiceService) {
+  constructor(private  route: ActivatedRoute, private _courseService: CourseServiceService,
+              private router: Router) {
     this.route.params.subscribe(params => {
       this.loadCourse(params['courseId']);
     });
@@ -64,7 +67,9 @@ export class CourseViewComponent implements OnInit {
         console.log(this.course);
       });
   }
-
+  getUserToken = () => {
+    return localStorage.getItem('token');
+  }
   getModulesFromServer = () => {
     this.loading = true;
     console.log('Getting course list from server ......');
@@ -76,7 +81,6 @@ export class CourseViewComponent implements OnInit {
         console.log(this.modules);
       });
   }
-
   getLessonsFromServer = () => {
     this.loading = true;
     console.log('Getting course list from server ......');
@@ -88,8 +92,6 @@ export class CourseViewComponent implements OnInit {
         console.log(this.lessons);
       });
   }
-
-
   getTopicsFromServer = () => {
     this.loading = true;
     console.log('Getting Topics list from server ......');
@@ -137,13 +139,19 @@ export class CourseViewComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.getCourseFromServer();
+    if ( ! this.getUserToken()) {
+      this.router.navigate(['/privateContent']);
+    }
+
+    this.getCourseFromServer();
       this.getModulesFromServer();
+
+
 
   }
 
 
-  compare = (a,b) => {
+  compare = (a, b) => {
     if (a.widgetOrder < b.widgetOrder) {
       return -1;
     }

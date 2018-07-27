@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditSectionComponent } from './edit-section/edit-section.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import {CourseServiceService} from './services/course-service.service';
+import { PrivateContentBannerComponent } from './private-content-banner/private-content-banner.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {CourseServiceService} from './services/course-service.service';
     StudentProfileComponent,
     EditSectionComponent,
     SectionListComponent,
+    PrivateContentBannerComponent,
   ],
   imports: [
     BrowserModule,

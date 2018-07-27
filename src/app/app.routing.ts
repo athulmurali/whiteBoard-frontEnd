@@ -7,6 +7,7 @@ import {UserRegisterComponent} from './user-register/user-register.component';
 import {StudentProfileComponent} from './student-profile/student-profile.component';
 import {EditSectionComponent} from './edit-section/edit-section.component';
 import {SectionListComponent} from './section-list/section-list.component';
+import {PrivateContentBannerComponent} from './private-content-banner/private-content-banner.component';
 
 
 const appRoutes: Routes = [
@@ -14,10 +15,8 @@ const appRoutes: Routes = [
     { path: 'login', component: UserLoginComponent},
     { path: 'register', component: UserRegisterComponent},
     { path: 'studentProfile', component: StudentProfileComponent},
-
-
     { path: 'home', component: CourseGridComponent},
-    { path: 'happy', component: CourseGridComponent},
+    { path: 'privateContent', component: PrivateContentBannerComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
     { path: 'course/:courseId/section', component : SectionListComponent},
     { path: 'course/:courseId/section/:sectionId', component : EditSectionComponent},
