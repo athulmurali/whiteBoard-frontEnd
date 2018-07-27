@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-section',
@@ -7,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditSectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  private section = {
+    id : 100,
+    title : 'As',
+    totalSeats: 100,
+    enrolledSeats : 50
+  };
+
+  onClickSubmit(){
+    alert("submitted! ")
+
+  }
+  onClickCancel(){
+    alert("cancelled! ")
+    this.router.navigate(['/home']);
+
+
+  }
 
   ngOnInit() {
   }

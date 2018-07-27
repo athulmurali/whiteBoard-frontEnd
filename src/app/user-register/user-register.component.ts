@@ -26,7 +26,21 @@ export class UserRegisterComponent implements OnInit {
 
   private passwordConfirmed = false;
   private userNameTaken = false;
+  private user={
+    username:"",
+    password:"",
+    confirmPassword:"",
+    phone:"",
+    email:"",
+    firstName: "",
+    lastName:"",
+    role:"student"
+  };
 
+  onclickRegister(){
+    console.log(this.user)
+    alert("registering!")
+  }
   ngOnInit() {
   }
 

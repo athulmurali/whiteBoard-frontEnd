@@ -10,15 +10,18 @@ import {UserService} from '../services/user.service';
 export class UserLoginComponent implements OnInit {
 
   private loginError = false;
-  constructor(private router: Router, service: UserService) { }
+  private userCredentials = {
+    username : '',
+    password : ''
+  };
+  constructor(private router: Router) { }
 
   onClickLogin() {
-    console.log('asdasd');
     // if(true) {this.router.navigate(['/studentProfile']); } else { this.loginError = true; }
-    this.router.navigate(['/studentProfile']);
+    console.log(this.userCredentials)
+    alert(this.userCredentials.username)
+    // this.router.navigate(['/studentProfile']);
   }
-
-
   ngOnInit() {
   }
 

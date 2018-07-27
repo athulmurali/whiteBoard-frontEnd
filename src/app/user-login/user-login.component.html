@@ -11,11 +11,13 @@
 
     </div>
     <div class="form__group">
-      <input type="text" id="userName" placeholder="Username" class="form__input" />
+      <input type="text" id="username" name="username" placeholder="username" class="form__input"
+             [(ngModel)]="userCredentials.username"/>
     </div>
 
     <div class="form__group">
-      <input type="password"  id="password" placeholder="Password" class="form__input" />
+      <input type="password"  id="password" placeholder="password" name="password" class="form__input"
+             [(ngModel)]="userCredentials.password"/>
     </div>
 
     <button id="login" class="btn" type="button" (click)="onClickLogin()">Login</button>

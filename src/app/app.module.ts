@@ -14,9 +14,9 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CourseListComponent } from './course-list/course-list.component';
 import { EditSectionComponent } from './edit-section/edit-section.component';
 import { SectionListComponent } from './section-list/section-list.component';
+import {CourseServiceService} from './services/course-service.service';
 
 
 @NgModule({
@@ -29,7 +29,6 @@ import { SectionListComponent } from './section-list/section-list.component';
     UserLoginComponent,
     UserRegisterComponent,
     StudentProfileComponent,
-    CourseListComponent,
     EditSectionComponent,
     SectionListComponent,
   ],
@@ -39,7 +38,7 @@ import { SectionListComponent } from './section-list/section-list.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CourseServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

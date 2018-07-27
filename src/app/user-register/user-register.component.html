@@ -9,7 +9,8 @@
 
     <form class="form" id ="userForm">
       <div class="form__group">
-        <input type="text" placeholder="Username" class="form__input"  id="username"/>
+        <input type="text" placeholder="Username" class="form__input"  id="username"
+               name="username" [(ngModel)]="user.username"/>
         <small id="userNameHelp" class="text-muted">
           userName must be alphanumeric
         </small>
@@ -17,21 +18,29 @@
       </div>
 
       <div class="form__group">
-        <input type="text" placeholder="First Name" class="form__input" id="firstName"/>
+        <input type="text" placeholder="First Name" class="form__input" id="firstName"
+               name="firstName" [(ngModel)]="user.firstName"/>
+
       </div>
 
       <div class="form__group">
-        <input type="text" placeholder="Last Name" class="form__input" id="lastName"/>
+        <input type="text" placeholder="Last Name" class="form__input" id="lastName"
+               name="lastName" [(ngModel)]="user.lastName"/>
+
       </div>
 
 
       <div class="form__group">
-        <input type="email" placeholder="Email" class="form__input" id="email"/>
+        <input type="email" placeholder="Email" class="form__input" id="email"
+               name="email" [(ngModel)]="user.email"/>
+
         <span  id="emailAvailable"></span>
       </div>
 
       <div class="form__group">
-        <input type="password" placeholder="Password" class="form__input" id="password"/>
+        <input type="password" placeholder="Password" class="form__input" id="password"
+               name="password" [(ngModel)]="user.password"/>
+
         <small id="passwordHelp" class="text-muted">
           Must be 8-20 characters long.
         </small>
@@ -39,18 +48,24 @@
       </div>
 
 
-      <div class="form__group">
-        <input type="password" placeholder="confirm password" class="form__input" id="confirmPassword"/>
+      <div class="form__group" >
+        <input type="password" placeholder="confirm password" class="form__input" id="confirmPassword"
+               name="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+
+        <small id="confirmPasswordHelp" class="text-muted" *ngIf="user.password!=user.confirmPassword">
+          Password not matching
+        </small>
+
       </div>
 
 
 
-
-
       <div class="form__group">
-        <input type="tel" placeholder="Mobile Number" class="form__input" id="phoneNo"/>
+        <input type="tel" placeholder="phone" class="form__input" id="phone"
+               name="phone" [(ngModel)]="user.phone"/>
       </div>
-      <small id="phoneNoHelp" class="text-muted">
+      <small id="phoneNoHelp" class="text-muted"
+      *ngIf="user.phone.length!=10 ">
         Must be valid 10 digit phone number
       </small>
 
@@ -63,7 +78,8 @@
 
       <div class="form_group">
 
-        <select id="role"  class="form__input">
+        <select id="role"  class="form__input"
+        name="role">
           <option value="student" selected >student</option>
           <option value="admin">admin</option>
           <option value="faculty">faculty</option>
@@ -72,7 +88,8 @@
       </div>
 
 
-      <button class="btn" type="button" id="register">Register</button>
+      <button class="btn" type="button" id="register"
+      (click)="onclickRegister()">Register</button>
     </form>
 
     <div class="card rounded" id="successCard" style="display: none;">

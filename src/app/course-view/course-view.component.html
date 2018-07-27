@@ -1,10 +1,10 @@
-<h1>Course Id  : {{courseId}} </h1>
-<p>
-  course-view works!
+<h1 style="text-align: center" *ngIf="selectedCourse" >{{selectedCourse.title}} </h1>
+<p *ngIf="sectionSelected">
+  Section name :
 </p>
 
-<div class="row">
-  <div class="col-sm-12 col-lg-4 ">
+<div class="row mx-auto justify-content-center">
+  <div class="col-sm-12 col-lg-4 justify-content-center">
 
     <ul class="mx-2 list-group ">
       <li class="list-group-item d-flex align-items-center justify-content-around">
@@ -12,77 +12,57 @@
         <span class="align-content-end badge badge-primary badge-pill">{{availableSeats}}</span>
       </li>
       <li class="list-group-item active">Modules</li>
-
-
-      <li class="list-group-item">Module 1 </li>
-      <li class="list-group-item">Module 2 </li>
-      <li class="list-group-item">Module 3 </li>
-      <li class="list-group-item">Module 4 </li>
+      <li class="list-group-item a"  *ngFor="let module of modules" (click)="selectModule(module.id)"
+          [ngClass]="{active: selectedModuleId== module.id}">
+        {{module.title}} </li>
     </ul>
 
   </div>
-  <div class="col-sm-12 col-lg-8">
+  <div *ngIf="selectedModuleId" class="col-sm-12 col-lg-8">
     <div class="row ">
       <ul class= " nav nav-tabs nav-fill">
-        <li class="nav-item">
-          <a class="nav-link " href="#">
-            Active-Lesson1</a>
+        <li *ngFor="let lesson of lessons" class="nav-item" (click)="selectLesson(lesson.id)">
+          <a class="nav-link a" [ngClass]="{active: selectedLessonId== lesson.id}" >
+            {{lesson.title}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lesson 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lesson 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
+
       </ul>
     </div>
 
     <div class="my-2 row text-dark">
       <ul class="nav nav-pills nav-fill">
-        <li class="nav-item " *ngIf="test">
-          <a class="nav-link active " href="#">Active</a>
+
+        <li class="nav-item" *ngFor="let topic of topics " >
+          <a class="nav-link text-dark"  (click)="selectTopic(topic.id)"
+             [ngClass]="{active: selectedTopicId== topic.id}">{{topic.title}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="#">topic 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="#">topic 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
+
       </ul>
     </div>
 
 
-    random column right
-    <h4 class="display-4">
-      Heading test
-    </h4>
+    <div   *ngFor="let widget of widgets">
+      <h1 *ngIf="widget.widgetType=='Heading' && widget.size==1" >{{widget.text}}</h1>
+      <h2 *ngIf="widget.widgetType=='Heading' && widget.size==2" >{{widget.text}}</h2>
+      <h2 *ngIf="widget.widgetType=='Heading' && widget.size==3" >{{widget.text}}</h2>
+      <p *ngIf="widget.widgetType=='Paragraph'" >{{widget.text}}</p>
+     <div class="form-group" *ngIf="widget.widgetType=='Link'">
+       <a href="{{widget.text}}">{{widget.linkName}}</a>
+     </div>
+      <ul  *ngIf="widget.widgetType=='List' && widget.listType=='unordered'">
+        <li class="justify-content-center" *ngFor="let item of widget.text.split('\n')">{{item}}</li>
+
+      </ul>
+      <ol  *ngIf="widget.widgetType=='List' && widget.listType=='ordered'">
+        <li  *ngFor="let item of widget.text.split('\n')">{{item}}</li>
+
+      </ol>
+
+      <img *ngIf="widget.widgetType=='Image'" src="{{widget.text}}" alt="{{widget.name}}">
 
 
-    <h4>
-      Paragraph test
-    </h4>
-    <p>
-      A common English usage misconception is that a paragraph has three to five sentences;
-      single-word paragraphs can be seen in some professional writing, and journalists often
-      use single-sentence paragraphs.[1]
+    </div>
 
-      The crafting of clear, coherent paragraphs is the subject of considerable stylistic debate.
-      Forms generally vary among types of writing. For example, newspapers, scientific journals, and
-      fictional essays have somewhat different conventions for the placement of paragraph breaks.
-
-      English students are sometimes taught that a paragraph should have a topic sentence
-      or "main idea", preferably first, and multiple "supporting" or "detail" sentences which explain
-      or supply evidence. One technique of this type, intended for essay writing, is known as the Schaffer paragraph.
-      For example, the following excerpt from Dr. Samuel Johnson's Lives of the English Poets, the
-      first sentence is the main idea: that Joseph Addison is a skilled "describer of life and manners".
-      The succeeding sentences are details that support and explain the main idea in a specific way.
-    </p>
 
 
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseServiceService} from '../services/course-service.service';
+import {Course} from '../models/Course';
 
 @Component({
   selector: 'app-course-grid',
@@ -8,29 +9,11 @@ import {CourseServiceService} from '../services/course-service.service';
   providers: [CourseServiceService]
 })
 export class CourseGridComponent implements OnInit {
-
-  courses = [
-    {
-      title : 'Web dev - Summer 1',
-      isPrivate : true,
-      id : 1
-    },
-    {
-      title : 'DBMS',
-      isPrivate : false,
-      id : 2
-
-    }
-  ];
+  private courses: Course[];
   private loaded: boolean;
-  private courseService: any;
   private loading: any;
   private coursesReceived: any;
-  constructor(private _courseService: CourseServiceService) {
-
-    // this.courseService = CourseServiceService.instance;
-
-  }
+  constructor(private _courseService: CourseServiceService) {}
 
   ngOnInit() {
     console.log('loaded on init: ', this.loaded);
@@ -38,28 +21,17 @@ export class CourseGridComponent implements OnInit {
 
     this.getAllCoursesFromServer();
   }
-
-
-
   getAllCoursesFromServer = () => {
     this.loading = true;
-
-    console.log(this)
-
     console.log('Getting course list from server ......');
 
-    this._courseService.findAllCourses()
-      .then((coursesReceived) => {
 
-        this.coursesReceived = coursesReceived;
-        console.log(coursesReceived)
-
-        this.loading = false;
-      });
-
-
-
+    this._courseService.findAllCoursesSub()
+      .subscribe(data => {
+      console.log('In subscriber ');
+      this.courses = data;
+      this.loading=false;
+      console.log(this.courses);
+    });
   }
-
-
 }
