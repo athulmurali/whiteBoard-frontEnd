@@ -1,9 +1,13 @@
 <body>
 <div class="container-fluid vertical-center">
   <div class="container-fluid align-items-center ">
+    <h3 class="display-4 pull-left"> Profile</h3>
+    <div class=" pull-right">
+      <button class="btn-group btn-lg btn-outline-secondary rounded" style="cursor: pointer"
+      (click)="handleClickEditProfile()">Edit</button>
+    </div>
 
 
-    <h3 class="display-4"> Edit profile</h3>
   </div>
   <div *ngIf="profile" class="row align-items-center col align-self-center">
     <div class="col">

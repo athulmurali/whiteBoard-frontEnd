@@ -1,6 +1,7 @@
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export class User {
+  role: string;
   dob: DateTimeFormat;
   email: string;
   enrolledSections: [string];
@@ -9,4 +10,6 @@ export class User {
   phone: number;
   username: string;
   _id: string;
+  password?: string;
+  confirmPassword?: string;
 }

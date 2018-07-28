@@ -1,0 +1,132 @@
+<body>
+<div class="container-fluid vertical-center">
+  <div class="container-fluid align-items-center ">
+    <h3 class="display-4 pull-left">Edit  Profile</h3>
+
+
+  </div>
+  <div  class="row align-items-center col align-self-center">
+    <div class="col">
+
+      <div class="card hovercard rounded">
+        <div class="cardheader">
+
+        </div>
+        <div class="avatar">
+          <img alt="" src="https://lh3.googleusercontent.com/-V8XXuxLSSC8/WhQYSv4O9NI/AAAAAAAADdM/o5UYNsZ8ZKgrynkegZQv6blgzwpfmdDUwCMYCGAYYCw/s180/google_moodlamp_192x192.png">
+          <div class="pull-right px-3">
+            <button class="btn-group btn-lg btn-outline-success rounded" style="cursor: pointer"
+                    (click)="handleSaveProfile()">Save</button>
+          </div>
+
+        </div>
+
+        <div class="info" *ngIf="updateError">
+          <h3>Update error! Please check the data</h3>
+
+        </div>
+
+
+        <div class="info" *ngIf="updateSuccess">
+          <h3>Update Success! Redirecting to profile view</h3>
+
+        </div>
+        <div *ngIf="user" class="info justify-content-center ">
+
+          <form>
+
+
+            <div class="form-group row">
+              <label for="userName" class="col-sm-2 col-form-label">username</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="text" class="form-control" id="userName" placeholder="username"
+                       name="username"
+                       [(ngModel)]="user.username">
+              </div>
+              <div class="input-group-append" *ngIf="usernameok">
+                <span class="input-group-text" id="basic-addon2">@example.com</span>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-2 col-form-label">email</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="email" class="form-control" id="email" placeholder="email"
+                       [(ngModel)]="user.email" name="email">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="email" class="form-control" id="firstName" placeholder="First Name"
+                       [(ngModel)]="user.firstName" name="firstName">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="email" class="form-control" id="lastName" placeholder="Last Name"
+                       [(ngModel)]="user.lastName" name="lastName">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+              <div class="col-lg-6 col-sm-12">
+                <input type="password" class="form-control" id="confirmPassword"
+                       placeholder="Confirm Password">
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+                <label for="dob"
+                       [(ngModel)]="user.dob" name ="dob"
+                       class="col-sm-2 col-form-label"> Date of birth</label>
+
+              <div class="col-lg-6 col-sm-12">
+                <input id="dob" class="form-control" type="date" style="border-radius: 5px"
+                       [(ngModel)]="user.dob" name="dob"
+                       required ngDefaultControl>
+              </div>
+              </div>
+
+
+            <div class="form-group row">
+
+              <label for="phone"  class="col-sm-2 col-form-label"> Phone</label>
+
+              <div class="col-lg-6 col-sm-12">
+
+              <input type="tel" placeholder="phone" class="form-control" id="phone"
+                   name="phone" [(ngModel)]="user.phone"/>
+              </div>
+            </div>
+
+
+
+
+          </form>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>

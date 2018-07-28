@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {SectionService} from '../services/section.service';
 import {TOKEN_NAME} from '../constants/http';
+import {saveAuthToken} from '../common-utils';
 
 @Component({
   selector: 'app-user-login',
@@ -26,7 +27,7 @@ export class UserLoginComponent implements OnInit {
     // this.router.navigate(['/studentProfile']);
     this.userService.loginUser(this.userCredentials).subscribe(
       data => {
-      localStorage.setItem(TOKEN_NAME, data.token);
+        saveAuthToken(data.token);
       console.log(data);
       this.router.navigate(['/studentProfile']);
     },

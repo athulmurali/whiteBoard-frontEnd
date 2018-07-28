@@ -1,36 +1,35 @@
-<h4>Sections  </h4>
+
+
+
+<div  *ngIf="!loading" class="container-fluid">
+  <div class="row px-2">
+    <h3 class="mr-auto">Sections</h3>
+    <button class="btn-success rounded"> Add section</button>
+  </div>
+
+  <div  class="row  card-body" >
 
 
 
 
-<div  class="row  card-body" >
-
-
-
-
-  <div class="col-6"> <h5>Title</h5></div>
-  <div class="col-3"> <h5 >TotalSeats</h5></div>
-  <div class="col-3"> <h5 >EnrolledSeats</h5></div>
-
-
-</div>
-
-
-  <div  class="row clickableRow card-body" *ngFor="let section of sections" (click)="onClickSection(section.id)">
-
-    <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
-
-
-
-    <div class="col-6"> <h5>{{section.title}}</h5></div>
-      <div class="col-3"> <h5 >{{section.totalSeats}}</h5></div>
-      <div class="col-3"> <h5 >{{section.enrolledSeats}}</h5></div>
-    <!--</a>-->
+    <div class="col-6"> <h5>Title</h5></div>
+    <div class="col-3"> <h5 >TotalSeats</h5></div>
+    <div class="col-3"> <h5 >EnrolledSeats</h5></div>
 
 
   </div>
 
+  <div   class="row clickable Row card-body" *ngFor="let section of sectionsFromServer" (click)="onClickSection(section._id)">
+
+    <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
+    <div  class="col-6"> <h5>{{section.title}}</h5></div>
+    <div class="col-3"> <h5 >{{section.totalSeats}}</h5></div>
+    <div class="col-3"> <h5 >{{section.enrolledStudents.length}}</h5></div>
+    <!--</a>-->
+  </div>
+</div>
 
 
-
-
+<div  *ngIf="loading" class="container-fluid">
+  <h2>Loading   </h2>
+</div>

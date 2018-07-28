@@ -8,6 +8,7 @@ import {StudentProfileComponent} from './student-profile/student-profile.compone
 import {EditSectionComponent} from './edit-section/edit-section.component';
 import {SectionListComponent} from './section-list/section-list.component';
 import {PrivateContentBannerComponent} from './private-content-banner/private-content-banner.component';
+import {EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
 
 
 const appRoutes: Routes = [
@@ -15,11 +16,13 @@ const appRoutes: Routes = [
     { path: 'login', component: UserLoginComponent},
     { path: 'register', component: UserRegisterComponent},
     { path: 'studentProfile', component: StudentProfileComponent},
-    { path: 'home', component: CourseGridComponent},
+    { path: 'editProfile', component: EditUserProfileComponent},
+
+  { path: 'home', component: CourseGridComponent},
     { path: 'privateContent', component: PrivateContentBannerComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
     { path: 'course/:courseId/section', component : SectionListComponent},
-    { path: 'course/:courseId/section/:sectionId', component : EditSectionComponent},
+    { path: 'course/:courseId/editSection/:sectionId', component : EditSectionComponent},
 
 
 

@@ -18,8 +18,7 @@ body {
 }
 
 .user {
-  width: 90%;
-  max-width: 340px;
+  width: 80%;
   margin: 5vh auto;
 }
 
@@ -176,4 +175,9 @@ body {
   100% {
     background-position: 0 0;
   }
+}
+
+
+.roleCard{
+  width: 18rem; min-height:300px; cursor: pointer;
 }

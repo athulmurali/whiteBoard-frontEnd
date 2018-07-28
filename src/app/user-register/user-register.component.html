@@ -1,109 +1,126 @@
 
-<div class="user">
+
+<div  *ngIf="!isRoleSelected" class="container-fluid jumbotron jumbotron-fluid py-4">
+  <div class="h-100  ">
+    <h1 class="display-4"> Choose your role </h1>
+    <div>
+      <p class="lead row">Your options will be based on role. So play safe!</p>
+    </div>
+
+    <div class="mx-auto  align-content-center card-deck">
+      <div class="card roleCard" *ngFor="let role of roles" style=""  (click)="selectRole(role)">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h1 class="card-text">{{role}}</h1>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isRoleSelected" class="user">
   <header class="user__header">
     <img src="https://cdn1.imggmi.com/uploads/2018/5/17/0d35483b3ee286472ca7081cff19cc85-full.png" alt="" />
     <h1 >Sign Up !</h1>
   </header>
 
-  <div id="formContainer">
+  <div  id="formContainer">
+    <form class="form " id ="userForm">
+      <div class="row my-lg-1">
+        <div class="col-md-6 col-sm-12  form__group">
+          <input type="text" placeholder="Username" class="form__input"  id="username"
+                 name="username" [(ngModel)]="user.username"/>
+          <small id="userNameHelp" class="text-muted">
+            userName must be alphanumeric
+          </small>
 
-    <form class="form" id ="userForm">
-      <div class="form__group">
-        <input type="text" placeholder="Username" class="form__input"  id="username"
-               name="username" [(ngModel)]="user.username"/>
-        <small id="userNameHelp" class="text-muted">
-          userName must be alphanumeric
-        </small>
+        </div>
+
+        <div class="col-md-6 col-sm-12  form__group px-2">
+          <input type="email" placeholder="Email" class="form__input" id="email"
+                 name="email" [(ngModel)]="user.email"/>
+
+          <span  id="emailAvailable"></span>
+        </div>
+
 
       </div>
 
-      <div class="form__group">
-        <input type="text" placeholder="First Name" class="form__input" id="firstName"
-               name="firstName" [(ngModel)]="user.firstName"/>
+      <div class="row my-lg-1">
 
-      </div>
+        <div class="col-md-6 col-sm-12  form__group">
+          <input type="text" placeholder="First Name" class="form__input" id="firstName"
+                 name="firstName" [(ngModel)]="user.firstName"/>
 
-      <div class="form__group">
-        <input type="text" placeholder="Last Name" class="form__input" id="lastName"
-               name="lastName" [(ngModel)]="user.lastName"/>
+        </div>
 
-      </div>
+        <div class="col-md-6 col-sm-12 form__group">
+          <input type="text" placeholder="Last Name" class="form__input" id="lastName"
+                 name="lastName" [(ngModel)]="user.lastName"/>
 
-
-      <div class="form__group">
-        <input type="email" placeholder="Email" class="form__input" id="email"
-               name="email" [(ngModel)]="user.email"/>
-
-        <span  id="emailAvailable"></span>
-      </div>
-
-      <div class="form__group">
-        <input type="password" placeholder="Password" class="form__input" id="password"
-               name="password" [(ngModel)]="user.password"/>
-
-        <small id="passwordHelp" class="text-muted">
-          Must be 8-20 characters long.
-        </small>
+        </div>
 
       </div>
 
 
-      <div class="form__group" >
-        <input type="password" placeholder="confirm password" class="form__input" id="confirmPassword"
-               name="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+      <div class="row my-lg-1">
 
-        <small id="confirmPasswordHelp" class="text-muted" *ngIf="user.password!=user.confirmPassword">
-          Password not matching
-        </small>
+        <div class="col-md-6 col-sm-12 form__group">
+          <input type="password" placeholder="Password" class="form__input" id="password"
+                 name="password" [(ngModel)]="user.password"/>
+
+          <small *ngIf="! (  user.password.length >=8 && user.password.length <=20) " id="passwordHelp" class="text-muted">
+            Must be 8-20 characters long.
+          </small>
+
+        </div>
+
+
+        <div class="col-md-6 col-sm-12 form-group">
+          <input type="password" placeholder="confirm password" class="form__input" id="confirmPassword"
+                 name="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+
+          <small id="confirmPasswordHelp" class="text-muted" *ngIf="user.password!=user.confirmPassword">
+            Password not matching
+          </small>
+
+        </div>
+
+
+      </div>
+
+      <div class="row my-lg-1 vertical-center">
+
+        <div  class="col-md-6 col-sm-12 form__group">
+
+          <input type="tel" placeholder="phone" class="form__input" id="phone"
+                 name="phone" [(ngModel)]="user.phone"/>
+
+
+          <small *ngIf="! (  user.phone.toString().length ==10) "
+                 id="phoneNoHelp" class="text-muted">
+            Must be valid 10 digit phone number
+          </small>
+
+
+        </div>
+
+        <div class="col-md-6 col-sm-12 form_group">
+          <label> Date of birth</label>
+
+          <input id="dob" type="date" style="border-radius: 5px"
+                 [(ngModel)]="user.dob">
+        </div>
 
       </div>
 
 
-
-      <div class="form__group">
-        <input type="tel" placeholder="phone" class="form__input" id="phone"
-               name="phone" [(ngModel)]="user.phone"/>
-      </div>
-      <small id="phoneNoHelp" class="text-muted"
-      *ngIf="user.phone.length!=10 ">
-        Must be valid 10 digit phone number
-      </small>
-
-
-      <div class="form_group">
-        <label> Date of birth</label>
-
-        <input id="dob" type="date" style="border-radius: 5px">
-      </div>
-
-      <div class="form_group">
-
-        <select id="role"  class="form__input"
-        name="role">
-          <option value="student" selected >student</option>
-          <option value="admin">admin</option>
-          <option value="faculty">faculty</option>
-
-        </select>
-      </div>
 
 
       <button class="btn" type="button" id="register"
       (click)="onclickRegister()">Register</button>
     </form>
-
-    <div class="card rounded" id="successCard" style="display: none;">
-      <div class="card-img-top row">
-
-        <i class="mx-auto fas fa-check-circle fa-6x" style="padding: 10%"></i>
-      </div>
-
-      <div class="card-body ">
-        <h5 class="card-title">Registration Successful! </h5>
-        <p class="card-text">An activation mail has been sent to your registered email. It should be there within 5 minutes. Please check your inbox. </p>
-        <a href="#" class="btn btn-primary">Login</a>
-      </div>
-    </div>
 
   </div>
 

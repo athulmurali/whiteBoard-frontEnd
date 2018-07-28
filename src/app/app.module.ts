@@ -20,6 +20,7 @@ import {CourseServiceService} from './services/course-service.service';
 import { PrivateContentBannerComponent } from './private-content-banner/private-content-banner.component';
 import {UserService} from './services/user.service';
 import {AuthInterceptor} from './services/auth.interceptor';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {AuthInterceptor} from './services/auth.interceptor';
     EditSectionComponent,
     SectionListComponent,
     PrivateContentBannerComponent,
+    EditUserProfileComponent,
   ],
   imports: [
     BrowserModule,
