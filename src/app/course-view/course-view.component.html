@@ -2,7 +2,6 @@
 <p *ngIf="sectionSelected">
   Section name :
 </p>
-
 <div class="row mx-auto justify-content-center">
   <div class="col-sm-12 col-lg-4 justify-content-center">
 
@@ -11,8 +10,11 @@
         Available seats
         <span class="align-content-end badge badge-primary badge-pill">{{availableSeats}}</span>
       </li>
-      <li class="list-group-item ">
-        <button class="btn-block btn-outline-success"> Enroll</button>
+      <li class="list-group-item p-0 rounded-top">
+        <button class="btn-block btn-outline-success pointer" (click)="onClickEnroll()"> Enroll</button>
+      </li>
+      <li *ngIf="false" class="list-group-item p-0 rounded-top">
+        <button class="btn-block btn-outline-danger pointer" (click)="onClickEnroll()"> Unroll</button>
       </li>
 
       <li class="list-group-item active">Modules</li>

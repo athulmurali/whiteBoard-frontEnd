@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <form>
+  <form *ngIf="section">
     <div class="row px-2">
       <h3 class="mr-auto">Edit section</h3>
       <button class="btn-danger rounded" (click)="onClickDelete()"> Delete section</button>

@@ -3,3 +3,7 @@
 
   border : solid black 0.1px;
 }
+
+.pointer{
+  cursor: pointer;
+}

@@ -21,6 +21,7 @@ import { PrivateContentBannerComponent } from './private-content-banner/private-
 import {UserService} from './services/user.service';
 import {AuthInterceptor} from './services/auth.interceptor';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { EnrollInSectionComponent } from './enroll-in-section/enroll-in-section.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.
     SectionListComponent,
     PrivateContentBannerComponent,
     EditUserProfileComponent,
+    EnrollInSectionComponent,
   ],
   imports: [
     BrowserModule,

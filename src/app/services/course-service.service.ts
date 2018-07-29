@@ -7,6 +7,7 @@ import {Module} from '../models/Module';
 import {Lesson} from '../models/Lesson';
 import {Topic} from '../models/Topic';
 import {Widget} from '../models/Widget';
+import {GET_ENROLLED_SECTION} from '../constants/api';
 
 const BASE_URL = 'https://neu-course-manager.herokuapp.com';
 console.log('BASE_URL  ' + BASE_URL);
@@ -49,6 +50,14 @@ export class CourseServiceService {
   findWidgetsByTopicId(topicId: number): Observable<Widget[]> {
     console.log('IN observable : findCourseById');
     return this.http.get<Widget[]>(BASE_URL + '/api/topic/' + topicId + '/widget');
+  }
+
+
+  getEnrolledSectionId(courseId: number): Observable<any> {
+    console.log('In observable : ' + 'getEnrolledSectionId');
+
+    return this.http.get<any>(BASE_URL + GET_ENROLLED_SECTION.replace('courseId', courseId.toString()));
+
   }
 
 

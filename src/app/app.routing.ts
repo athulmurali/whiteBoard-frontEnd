@@ -9,6 +9,7 @@ import {EditSectionComponent} from './edit-section/edit-section.component';
 import {SectionListComponent} from './section-list/section-list.component';
 import {PrivateContentBannerComponent} from './private-content-banner/private-content-banner.component';
 import {EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
+import {EnrollInSectionComponent} from './enroll-in-section/enroll-in-section.component';
 
 
 const appRoutes: Routes = [
@@ -22,7 +23,11 @@ const appRoutes: Routes = [
     { path: 'privateContent', component: PrivateContentBannerComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
     { path: 'course/:courseId/section', component : SectionListComponent},
-    { path: 'course/:courseId/editSection/:sectionId', component : EditSectionComponent},
+
+  { path: 'course/:courseId/enroll', component : EnrollInSectionComponent},
+
+  { path: 'course/:courseId/section/:sectionId/edit', component : EditSectionComponent},
+
 
 
 

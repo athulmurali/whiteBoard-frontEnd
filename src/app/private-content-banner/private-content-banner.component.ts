@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateContentBannerComponent implements OnInit {
 
+  private isEnrollSelected:boolean;
+
   constructor() { }
 
   ngOnInit() {

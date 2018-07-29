@@ -161,4 +161,9 @@ export class CourseViewComponent implements OnInit {
     return 0;
   }
 
+  onClickEnroll = () => {
+    this.router.navigate(['/course/' + this.courseId.toString() + '/section']);
+  }
+
+
 }

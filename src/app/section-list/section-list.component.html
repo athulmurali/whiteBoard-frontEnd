@@ -1,50 +1,76 @@
 
 
-
-<div  *ngIf="!loading" class="container-fluid">
-  <div class="row px-2">
-    <h3 class="mr-auto">Sections</h3>
-    <button class="btn-success rounded" (click)="createNewSectionToServer()"> Add section</button>
+<div  *ngIf="!selectionType">
+  <div  *ngIf="loading" class="container-fluid">
+    <h2>Loading   </h2>
   </div>
-
-
-  <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Created!</h1>
-      <p class="lead">New Section created. Redirecting to edit the new course </p>
+  <div  *ngIf="!loading" class="container-fluid">
+    <div class="row px-2">
+      <h3 class="mr-auto">Sections</h3>
+      <button class="btn-success rounded pointer" (click)="createNewSectionToServer()"> Add section</button>
     </div>
-  </div>
 
-  <div *ngIf="error" class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Error!</h1>
-      <p class="lead">{{errorMessage}} </p>
+
+    <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Created!</h1>
+        <p class="lead">New Section created. Redirecting to edit the new course </p>
+      </div>
     </div>
-  </div>
 
-  <div  class="row  card-body" >
+    <div *ngIf="error" class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Error!</h1>
+        <p class="lead">{{errorMessage}} </p>
+      </div>
+    </div>
+
+    <div  class="row  card-body" >
 
 
 
 
-    <div class="col-6"> <h5>Title</h5></div>
-    <div class="col-3"> <h5 >TotalSeats</h5></div>
-    <div class="col-3"> <h5 >EnrolledSeats</h5></div>
+      <div class="col-6"> <h5>Title</h5></div>
+      <div class="col-3"> <h5 >TotalSeats</h5></div>
+      <div class="col-3"> <h5 >EnrolledSeats</h5></div>
 
 
-  </div>
+    </div>
 
-  <div   class="row clickableRow card-body" *ngFor="let section of sectionsFromServer" (click)="onClickSection(section._id)">
+    <div   class="row poin card-body" *ngFor="let section of sectionsFromServer">
+           <!--(click)="onClickSection(section._id)">-->
 
-    <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
-    <div  class="col-6"> <h5>{{section.title}}</h5></div>
-    <div class="col-3"> <h5 >{{section.totalSeats}}</h5></div>
-    <div class="col-3"> <h5 >{{section.enrolledStudents.length}}</h5></div>
-    <!--</a>-->
+      <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
+      <div  class="col-6 row">
+        <div class="col-lg-6 col-sm-12"><h5>{{section.title}}</h5></div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="pull-left">
+            <button class="btn-block btn-outline-success rounded pointer"
+                    (click)="selectEnroll(section._id)" >enroll</button>
+            <button class="btn-block btn-outline-danger rounded pointer"
+                    (click)="selectUnroll(section._id)" >unroll</button>
+          </div>
+          <div class="pull-right">
+            <div *ngIf="isSectionIdErolled(section._id)" class="badge-danger rounded px-2">enrolled</div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-lg-3 col-sm-6"> <h5 >{{section.totalSeats}}</h5></div>
+      <div class="col-lg-3 col-sm-6"> <h5 >{{section.enrolledStudents.length}}</h5></div>
+      <!--</a>-->
+    </div>
   </div>
 </div>
 
+<div *ngIf="selectionType && profile">
 
-<div  *ngIf="loading" class="container-fluid">
-  <h2>Loading   </h2>
+  <app-enroll-in-section
+    selectedSectionId="{{selectedSectionId}}"
+    type="{{selectionType}}"
+    [profile]= profile></app-enroll-in-section>
+
 </div>
+

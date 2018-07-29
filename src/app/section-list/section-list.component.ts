@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SectionService} from '../services/section.service';
 import {Section} from '../models/Section';
-import {ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, WAIT_TIME} from '../constants/api';
+import {WAIT_TIME} from '../constants/api';
+import {UserService} from '../services/user.service';
+import {User} from '../models/User';
 
 
 @Component({
@@ -10,29 +12,48 @@ import {ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, WAIT_TIME} from '../constan
   templateUrl: './section-list.component.html',
   styleUrls: ['./section-list.component.css']
 })
-export class SectionListComponent implements OnInit {
+export class SectionListComponent implements OnInit, OnChanges {
+
+  @Input()
+  role: string;
+
+  profile: User;
   courseId: number;
   loading: boolean;
   creationSuccess: boolean;
   sectionsFromServer: Section[];
-  selectedSectionId: number;
   errorMessage: string;
-
   newSection: Section;
 
+
+  isEnrollSelected: boolean;
+  isUnrollSelected: boolean;
+
+  selectedSectionId: string;
+
+  selectionType: string;
   constructor(private router: Router,
               private  route: ActivatedRoute,
-              private sectionService: SectionService) { }
+              private sectionService: SectionService,
+              private  userService: UserService) { }
 
   onClickSection(sectionId: Number) {
   console.log(sectionId);
-    this.router.navigate(['/course/' + this.courseId + '/editSection/' + sectionId.toString()]);
+    this.router.navigate(['/course/' + this.courseId + '/section/' + sectionId.toString() + '/edit']);
 
   }
-
   ngOnInit() {
+    this.isEnrollSelected = false;
+    this.isUnrollSelected = false;
+
+    console.log('role' + this.role);
     this.getCourseIdFromURL();
     this.getSectionsFromServer();
+    this.getProfileFromServer();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changed');
+    console.log(changes);
   }
 
   // from server
@@ -46,9 +67,7 @@ export class SectionListComponent implements OnInit {
         err => {console.log(err);
       this.loading = false; });
   }
-
   getCourseIdFromURL = () => {
-
     this.route.params.subscribe(params => {
       this.courseId = params.courseId;
       this.sectionService.getSectionsByCourseId(this.courseId);
@@ -74,8 +93,6 @@ export class SectionListComponent implements OnInit {
       }
     );
   }
-
-
   waitAndRedirect = (selectedSectionId) => {
 
     const  router = this.router;
@@ -85,10 +102,46 @@ export class SectionListComponent implements OnInit {
     // Your application has indicated there's an error
     window.setTimeout(function() {
       // Move to a new location or you can do something else
-      router.navigate(['/course/' + courseId.toString() + '/editSection/' + sectionId.toString()]);
+      const redirectToRoute = '/course/' + courseId.toString() +
+        '/section/' + sectionId.toString() + '/edit';
+      // alert('redir : ' + redirectToRoute);
+      router.navigate([redirectToRoute]);
 
     }, WAIT_TIME);
   }
+  getProfileFromServer = () => {
+    this.loading = true;
+    this.userService.getProfile().subscribe(data => {
+      this.loading = false;
+      console.log(data);
+      this.profile = data;
+      console.log(this.profile);
+    }, err => {
+      this.loading = false;
+      this.errorMessage = err.error.message;
+      console.log(JSON.stringify(err));
+    });
+  }
+  isSectionIdErolled(sectionId: string): boolean {
 
+    if (this.profile) {
+      return this.profile.enrolledSections.indexOf(sectionId ) >= 0;
+    }
+    return false;
+  }
 
+  selectEnroll = (selectSectionId: string) => {
+
+    this.selectionType = 'enroll';
+    this.selectedSectionId = selectSectionId;
+    alert('select enroll');
+  }
+
+  selectUnroll = (selectSectionId: string) => {
+
+    this.selectedSectionId = selectSectionId;
+    this.selectionType = 'unroll';
+
+    alert('select unroll!');
+  }
 }

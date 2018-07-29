@@ -1,0 +1,61 @@
+<div class="container px-2">
+  <div *ngIf="errorMessage">
+    <div class="jumbotron jumbotron-fluid align-content-center">
+      <div class="container">
+        <h1 class="display-4">Error!</h1>
+        <p class="lead"> {{errorMessage}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!errorMessage">
+
+    <div *ngIf="type=='enroll'" class="jumbotron jumbotron-fluid align-content-center">
+      <div class="container">
+        <div *ngIf="!updateSuccess">
+          <h1 class="display-4">Enroll?</h1>
+          <div>
+            <p class="lead"> Press confirm to enroll and cancel to go back!</p>
+            <div   class="row container">
+              <button class=" col-lg-6  col-sm-12  btn-block btn-outline-danger rounded pointer"
+                      (click)="onClickCancel()">Cancel</button>
+              <button class=" col-lg-6  col-sm-12  btn-block btn-outline-success rounded pointer"
+                      (click)="onClickConfirmEnroll()">Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="updateSuccess">
+          <h1 class="display-4">Enrolled Successfully!</h1>
+          <p class="lead"> You are being redirected  to section list</p>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+    <div *ngIf="type=='unroll'" class="jumbotron jumbotron-fluid align-content-center">
+      <div class="container">
+        <div *ngIf="!updateSuccess">
+          <h1 class="display-4">Unroll?</h1>
+          <p class="lead"> Press confirm to Unroll and cancel to go back!</p>
+          <div   class="row container">
+            <button class=" col-lg-6  col-sm-12  btn-block btn-outline-danger rounded pointer"
+                    (click)="onClickCancel()">Cancel</button>
+            <button class=" col-lg-6  col-sm-12  btn-block btn-outline-success rounded pointer"
+                    (click)="onClickConfirmUnroll()"
+            >Confirm</button>
+          </div>
+        </div>
+        <div *ngIf="updateSuccess">
+          <h1 class="display-4">Unrolled Successfully!</h1>
+          <p class="lead"> You are being redirected  to section list</p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
