@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {
-  ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, DEL_SECTION_SUFFIX, ENROLL_STUDENT_SUFFIX, GET_SECTION_SUFIX,
+  ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, DEL_SECTION_SUFFIX, ENROLL_STUDENT_SUFFIX, GET_SECTION_SUFFIX,
   SECTION_URL
 } from '../constants/api';
 import {Section} from '../models/Section';
@@ -28,7 +28,7 @@ export class SectionService {
   getSectionById(sectionId: number): Observable<Section> {
     console.log(typeof(SECTION_URL));
     //
-    const getSectionSuffix = GET_SECTION_SUFIX.replace('sectionId', sectionId.toString());
+    const getSectionSuffix = GET_SECTION_SUFFIX.replace('sectionId', sectionId.toString());
     console.log(getSectionSuffix);
 
     return this.http.get<any>(COURSE_SEC_API_BASE_URL + getSectionSuffix);
@@ -39,6 +39,15 @@ export class SectionService {
       ADD_SECTION_SUFFIX.replace('courseId', courseId.toString()) ,
       newSection);
   }
+
+  updateSection(sectionId: number, newSection: Section): Observable<Section> {
+    console.log("update data");
+    console.log(newSection);
+    return this.http.put<Section>(COURSE_SEC_API_BASE_URL +
+      GET_SECTION_SUFFIX.replace('sectionId', sectionId.toString()) ,
+      newSection);
+  }
+
 
   deleteSectionById(courseId: number, sectionId: string): Observable<Section> {
     return this.http.delete<Section>(COURSE_SEC_API_BASE_URL +

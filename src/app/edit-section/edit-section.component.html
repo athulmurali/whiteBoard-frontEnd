@@ -8,7 +8,14 @@
     </div>
   </div>
 
-  <div *ngIf="deletionError" class="jumbotron jumbotron-fluid">
+  <div *ngIf="updateSuccess" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Update Success!</h1>
+      <p class="lead">Section data has been updated </p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Error!</h1>
       <p class="lead">{{errorMessage}} </p>
@@ -24,14 +31,16 @@
     <div class="py-2 form-group row">
       <label for="title" class="col-sm-2 col-form-label">Title</label>
       <div class="col-sm-10">
-        <input type="text"  class="form-control" id="title" value="{{section.title}}">
+        <input type="text"  class="form-control" id="title"
+               [(ngModel)]="section.title" name="title">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="totalSeats" class="col-sm-2 col-form-label">Total seats</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="totalSeats" value="{{section.totalSeats}}">
+        <input type="text" class="form-control" id="totalSeats"
+               [(ngModel)]="section.totalSeats" name="totalSeats">
       </div>
     </div>
 

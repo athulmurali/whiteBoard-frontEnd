@@ -21,6 +21,8 @@ export class EditSectionComponent implements OnInit {
   private currentSectionId: number;
   private courseId: number;
   private loading: boolean;
+  private updateSuccess: boolean;
+
 
   private deletionError: boolean;
   private errorMessage: string;
@@ -30,6 +32,24 @@ export class EditSectionComponent implements OnInit {
   onClickSubmit() {
     // alert('submitted! ');
 
+    this.loading = true;
+    this.sectionService.updateSection(this.currentSectionId, this.section).
+    subscribe(
+      data => {
+        this.section = data;
+        this.updateSuccess  = true;
+        this.loading = true;
+        this.waitAndRedirect();
+
+      },
+      err => {
+        this.loading = false;
+        this.updateSuccess = false;
+        console.log('EditSectionComponent : error');
+        console.log(err);
+        this.errorMessage = err.error.message;
+      }
+    );
   }
   onClickCancel() {
     // alert('cancelled! ');
@@ -78,18 +98,10 @@ export class EditSectionComponent implements OnInit {
     );
   }
   waitAndRedirect = () => {
-
-    const location = this.location
-
+    const location = this.location;
     // Your application has indicated there's an error
     window.setTimeout(function() {
-      // Move to a new location or you can do something else
-
-      // alert('redirecting');
       location.back();
-
-
-
     }, WAIT_TIME);
   }
 

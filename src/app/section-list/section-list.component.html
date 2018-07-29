@@ -1,7 +1,7 @@
 
 
 <div  *ngIf="!selectionType">
-  <div  *ngIf="loading" class="container-fluid">
+  <div  *ngIf="loading"  class="container-fluid">
     <h2>Loading   </h2>
   </div>
   <div  *ngIf="!loading" class="container-fluid">
@@ -10,44 +10,43 @@
       <button class="btn-success rounded pointer" (click)="createNewSectionToServer()"> Add section</button>
     </div>
 
-
     <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Created!</h1>
         <p class="lead">New Section created. Redirecting to edit the new course </p>
       </div>
     </div>
-
     <div *ngIf="error" class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Error!</h1>
         <p class="lead">{{errorMessage}} </p>
       </div>
     </div>
-
-    <div  class="row  card-body" >
-
-
-
-
+    <div  class="row  card-body">
       <div class="col-6"> <h5>Title</h5></div>
       <div class="col-3"> <h5 >TotalSeats</h5></div>
       <div class="col-3"> <h5 >EnrolledSeats</h5></div>
 
 
     </div>
-
-    <div   class="row poin card-body" *ngFor="let section of sectionsFromServer">
-           <!--(click)="onClickSection(section._id)">-->
-
-      <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
-      <div  class="col-6 row">
-        <div class="col-lg-6 col-sm-12"><h5>{{section.title}}</h5></div>
-        <div class="col-lg-6 col-sm-12">
+    <div   class="row  card-body" *ngFor="let section of sectionsFromServer">
+        <div  class="col-6 row">
+        <div  class="col-lg-6 col-sm-12">
+          <h5>{{section.title}}</h5>
+          <button class="btn-outline-primary rounded pointer"
+          (click)="onClickSection(section._id)">
+            <!--*ngIf="role"-->
+            Edit
+          </button>
+        </div>
+        <div  class="col-lg-6 col-sm-12">
           <div class="pull-left">
-            <button class="btn-block btn-outline-success rounded pointer"
+          <button *ngIf="!isSectionIdErolled(section._id)"
+              class="btn-block btn-outline-success rounded pointer"
+
                     (click)="selectEnroll(section._id)" >enroll</button>
-            <button class="btn-block btn-outline-danger rounded pointer"
+            <button *ngIf="isSectionIdErolled(section._id)"
+              class="btn-block btn-outline-danger rounded pointer"
                     (click)="selectUnroll(section._id)" >unroll</button>
           </div>
           <div class="pull-right">
@@ -66,7 +65,6 @@
 </div>
 
 <div *ngIf="selectionType && profile">
-
   <app-enroll-in-section
     selectedSectionId="{{selectedSectionId}}"
     type="{{selectionType}}"
