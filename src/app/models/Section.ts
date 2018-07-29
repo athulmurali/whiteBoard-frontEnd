@@ -1,5 +1,5 @@
 export class Section {
-  enrolledStudents: [string];
+  enrolledStudents?: [string];
   title: string;
   totalSeats: number;
   _id: string;

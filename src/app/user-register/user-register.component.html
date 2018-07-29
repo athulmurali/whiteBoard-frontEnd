@@ -20,6 +20,14 @@
 </div>
 
 <div *ngIf="isRoleSelected" class="user">
+
+  <div *ngIf="registerError" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Error</h1>
+      <p class="lead">{{errorMessage}}</p>
+    </div>
+  </div>
+
   <header class="user__header">
     <img src="https://cdn1.imggmi.com/uploads/2018/5/17/0d35483b3ee286472ca7081cff19cc85-full.png" alt="" />
     <h1 >Sign Up !</h1>

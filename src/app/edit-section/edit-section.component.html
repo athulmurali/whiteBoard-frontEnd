@@ -1,9 +1,24 @@
 <!-- Button (Double) -->
 <div class="container-fluid mx-auto my-auto">
+
+  <div *ngIf="deletionSuccess" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Deleted!</h1>
+      <p class="lead">Redirecting to  sections list.   </p>
+    </div>
+  </div>
+
+  <div *ngIf="deletionError" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Error!</h1>
+      <p class="lead">{{errorMessage}} </p>
+    </div>
+  </div>
+
   <form>
     <div class="row px-2">
       <h3 class="mr-auto">Edit section</h3>
-      <button class="btn-danger rounded"> Delete section</button>
+      <button class="btn-danger rounded" (click)="onClickDelete()"> Delete section</button>
     </div>
 
     <div class="py-2 form-group row">

@@ -4,7 +4,22 @@
 <div  *ngIf="!loading" class="container-fluid">
   <div class="row px-2">
     <h3 class="mr-auto">Sections</h3>
-    <button class="btn-success rounded"> Add section</button>
+    <button class="btn-success rounded" (click)="createNewSectionToServer()"> Add section</button>
+  </div>
+
+
+  <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Created!</h1>
+      <p class="lead">New Section created. Redirecting to edit the new course </p>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Error!</h1>
+      <p class="lead">{{errorMessage}} </p>
+    </div>
   </div>
 
   <div  class="row  card-body" >
@@ -19,7 +34,7 @@
 
   </div>
 
-  <div   class="row clickable Row card-body" *ngFor="let section of sectionsFromServer" (click)="onClickSection(section._id)">
+  <div   class="row clickableRow card-body" *ngFor="let section of sectionsFromServer" (click)="onClickSection(section._id)">
 
     <!--<a routerLink="/course/{{section.id}}/section/{{section.id}}}">-->
     <div  class="col-6"> <h5>{{section.title}}</h5></div>

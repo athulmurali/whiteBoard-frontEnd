@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../models/User';
 import {UserService} from '../services/user.service';
+import {saveAuthToken} from '../common-utils';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -26,12 +28,14 @@ export class UserRegisterComponent implements OnInit {
   roles = ['student', 'faculty', 'admin'];
   private loading: boolean;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   private passwordConfirmed = false;
   private userNameTaken = false;
+  private errorMessage: any;
 
   private user: User;
+  private registerError: boolean;
 
   private isRoleSelected: boolean;
   onclickRegister() {
@@ -54,10 +58,14 @@ export class UserRegisterComponent implements OnInit {
       data => {
         this.loading = false;
         this.user = data;
+        saveAuthToken(data.token);
+        this.router.navigate(['/studentProfile']);
       },
       err => {
         console.log(err);
         this.loading = false;
+        this.registerError = true;
+        this.errorMessage = err.error.message;
       }
     );
   }
