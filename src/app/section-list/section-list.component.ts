@@ -18,7 +18,7 @@ export class SectionListComponent implements OnInit, OnChanges {
   @Input()
   role: string;
 
-  DEFAULT_SECTION_NAME:string = 'section-1';
+  DEFAULT_SECTION_NAME = 'section-1';
   profile: User;
   courseId: number;
   loading: boolean;
@@ -83,6 +83,7 @@ export class SectionListComponent implements OnInit, OnChanges {
     const createdSection: Section = new Section();
     createdSection.title = this.DEFAULT_SECTION_NAME;
     createdSection.totalSeats = 100;
+    createdSection.courseId = this.courseId;
 
     this.sectionService.createNewSection(this.courseId, createdSection).subscribe(
       data => {

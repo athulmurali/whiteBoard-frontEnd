@@ -5,6 +5,7 @@ export class User {
   dob: DateTimeFormat;
   email: string;
   enrolledSections: [string];
+  address: string;
   firstName: string;
   lastName: string;
   phone: number;

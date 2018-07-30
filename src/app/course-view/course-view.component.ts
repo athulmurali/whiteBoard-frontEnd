@@ -14,7 +14,6 @@ import {Widget} from '../models/Widget';
 })
 export class CourseViewComponent implements OnInit {
 
-  isUserLoggedIn: boolean;
 
   // noinspection JSAnnotator
   student: {
@@ -143,11 +142,8 @@ export class CourseViewComponent implements OnInit {
       this.router.navigate(['/privateContent']);
     }
 
-    this.getCourseFromServer();
+      this.getCourseFromServer();
       this.getModulesFromServer();
-
-
-
   }
 
 

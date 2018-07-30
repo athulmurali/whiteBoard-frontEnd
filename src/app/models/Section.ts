@@ -3,4 +3,5 @@ export class Section {
   title: string;
   totalSeats: number;
   _id: string;
+  courseId: number;
 }

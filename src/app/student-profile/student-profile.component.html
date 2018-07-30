@@ -9,12 +9,10 @@
 
 
   </div>
-  <div *ngIf="profile" class="row align-items-center col align-self-center">
+  <div *ngIf="profile " class="row align-items-center col align-self-center">
     <div class="col">
-
       <div class="card hovercard rounded">
         <div class="cardheader">
-
         </div>
         <div class="avatar">
           <img alt="" src="https://lh3.googleusercontent.com/-V8XXuxLSSC8/WhQYSv4O9NI/AAAAAAAADdM/o5UYNsZ8ZKgrynkegZQv6blgzwpfmdDUwCMYCGAYYCw/s180/google_moodlamp_192x192.png">
@@ -50,6 +48,45 @@
           <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
             <i class="fab fa-twitter"></i>
           </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="card  rounded">
+          <div class="cardheader">
+            Enrolled Courses
+          </div>
+          <div class="card-body">
+
+            <div *ngIf="profile.enrolledSections.length===0">No enrolled Courses</div>
+            <div>
+              <div class="card-deck">
+
+                <div class="card"  *ngFor="let courseSection of courseSectionArr">
+                  <img class="card-img-top" src="https://picsum.photos/300/100"
+                       alt="Card image cap">
+                  <div class="card-body">
+
+                    <a routerLink="/course/{{courseSection.course.id}}">
+                      <h5 class="card-title">
+                        {{courseSection.course.title}}</h5>
+                    </a>
+
+                    <h6 class="card-title">
+                      Section : {{courseSection.section.title}}</h6>
+
+                    <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                  </div>
+                  <!--<div class="card-footer">-->
+                    <!--<small class="text-muted">Last updated 3 mins ago</small>-->
+                    <!--<a href="#" class="mx-2 btn btn-primary">Un-enroll</a>-->
+
+                  <!--</div>-->
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 

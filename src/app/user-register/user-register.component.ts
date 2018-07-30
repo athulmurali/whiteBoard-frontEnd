@@ -59,6 +59,7 @@ export class UserRegisterComponent implements OnInit {
         this.loading = false;
         this.user = data;
         saveAuthToken(data.token);
+        location.reload();
         this.router.navigate(['/studentProfile']);
       },
       err => {

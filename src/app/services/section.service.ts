@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {
-  ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, DEL_SECTION_SUFFIX, ENROLL_STUDENT_SUFFIX, GET_SECTION_SUFFIX,
+  ADD_SECTION_SUFFIX, COURSE_SEC_API_BASE_URL, DEL_SECTION_SUFFIX, ENROLL_STUDENT_SUFFIX, GET_SECTION_SUFFIX, GET_STUDENT_ENROLLED_SEC,
   SECTION_URL
 } from '../constants/api';
 import {Section} from '../models/Section';
@@ -78,5 +78,14 @@ export class SectionService {
     return this.http.delete<User>(url);
 
 
+  }
+
+
+
+  getEnrolledSections(studentId: string): Observable<Section> {
+    //
+    const getEnrolledSectionsSuffix = GET_STUDENT_ENROLLED_SEC.replace('studentId', studentId.toString());
+    console.log(getEnrolledSectionsSuffix);
+    return this.http.get<any>(COURSE_SEC_API_BASE_URL + getEnrolledSectionsSuffix);
   }
 }
