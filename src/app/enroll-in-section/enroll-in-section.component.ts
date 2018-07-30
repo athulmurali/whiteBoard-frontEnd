@@ -42,12 +42,12 @@ export class EnrollInSectionComponent implements OnInit, OnChanges {
   }
 
   onClickConfirmEnroll  = () => {
-    this.enrollInServer(this.profile.username, this.selectedSectionId);
+    this.enrollInServer(this.profile._id, this.selectedSectionId);
     // alert('confirmed! enroll');
   }
   onClickConfirmUnroll  = () => {
     // alert('confirmed! unnroll');
-    this.unrollFromServer(this.profile.username, this.selectedSectionId);
+    this.unrollFromServer(this.profile._id, this.selectedSectionId);
 
 
   }
@@ -55,8 +55,8 @@ export class EnrollInSectionComponent implements OnInit, OnChanges {
     // alert('Cancelled!');
     location.reload();
   }
-  enrollInServer        (username: string, sectionId: string) {
-    this.sectionService.enrollStudentId(username, sectionId).subscribe(
+  enrollInServer        (studentId: string, sectionId: string) {
+    this.sectionService.enrollStudentId(studentId, sectionId).subscribe(
       data => {
         this.loading = false;
         this.updateSuccess = true;
@@ -77,8 +77,8 @@ export class EnrollInSectionComponent implements OnInit, OnChanges {
     );
 
   }
-  unrollFromServer      (username: string, sectionId: string) {
-    this.sectionService.unrollStudentId(username, sectionId).subscribe(
+  unrollFromServer      (studentId: string, sectionId: string) {
+    this.sectionService.unrollStudentId(studentId, sectionId).subscribe(
       data => {
         this.loading = false;
         this.updateSuccess = true;
@@ -98,5 +98,5 @@ export class EnrollInSectionComponent implements OnInit, OnChanges {
     );
   }
   refreshWindowAfterWait = () => {
-    window.setTimeout(function() {location.reload()}, WAIT_TIME); }
+    window.setTimeout(function() {location.reload(); }, WAIT_TIME); }
 }

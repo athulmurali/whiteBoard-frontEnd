@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseServiceService} from '../services/course-service.service';
 import {Course} from '../models/Course';
+import {UserService} from '../services/user.service';
+import {User} from '../models/User';
+import {SectionService} from '../services/section.service';
+import {Section} from '../models/Section';
+import {CourseSection} from '../models/CourseSection';
 
 @Component({
   selector: 'app-course-grid',
@@ -13,13 +18,25 @@ export class CourseGridComponent implements OnInit {
   private loaded: boolean;
   private loading: any;
   private coursesReceived: any;
-  constructor(private _courseService: CourseServiceService) {}
+
+  private enrolledSections: [Section];
+  private enrolledCourses: [Course];
+  private courseSectionArr: [CourseSection];
+
+
+
+  private  errorMessage: string;
+  private profile: User;
+  constructor(private _courseService: CourseServiceService,
+              private userService: UserService,
+              private  sectionService: SectionService) {}
 
   ngOnInit() {
     console.log('loaded on init: ', this.loaded);
     console.log('Getting course list from server ......');
 
     this.getAllCoursesFromServer();
+    this.getProfileFromServer(this.getAllCoursesFromServer);
   }
   getAllCoursesFromServer = () => {
     this.loading = true;
@@ -30,8 +47,72 @@ export class CourseGridComponent implements OnInit {
       .subscribe(data => {
       console.log('In subscriber ');
       this.courses = data;
-      this.loading=false;
+      this.loading = false;
       console.log(this.courses);
     });
   }
+
+
+  getProfileFromServer = (cb) => {
+    this.userService.getProfile().subscribe(data => {
+      console.log(data);
+      this.profile = data;
+      console.log(this.profile);
+      if (cb) {
+        cb();
+        this.getEnrolledSectionsFromServer();
+
+      }
+    }, err => {
+      console.log(JSON.stringify(err));
+    });
+  }
+
+  getEnrolledSectionsFromServer = () => {
+    this.loading = true;
+    this.sectionService.getEnrolledSections(this.profile._id).subscribe(
+      data => {
+        this.loading = false;
+        this.enrolledSections = data;
+        this.filterEnrolledCourses(this.generateCourseSectionArray);
+
+      },
+      error => {
+        this.loading = false;
+        this.errorMessage = error.error.message;
+      }
+    );
+
+  }
+
+  filterEnrolledCourses = (cb) => {
+    console.log('filterEnrolledCourses');
+    const coursesBeforeFilter = this.courses;
+    console.log(coursesBeforeFilter);
+
+    const coursesAfterFilter = this.enrolledSections.map(section => {
+      const tempCourses = this.courses.filter(course => course.id === section.courseId);
+      if (tempCourses) {
+        const tempCourse = tempCourses[0];
+        console.log(tempCourse);
+        return tempCourse;
+      }
+    });
+    this.enrolledCourses = coursesAfterFilter;
+
+    cb();
+    console.log(coursesAfterFilter);
+  }
+
+  generateCourseSectionArray = () => {
+
+    const c = this.enrolledCourses;
+    this.courseSectionArr = this.enrolledSections.map(function(section, i) {
+      return {
+        section : section,
+        course : c[i]
+      };
+    });
+  }
+
 }

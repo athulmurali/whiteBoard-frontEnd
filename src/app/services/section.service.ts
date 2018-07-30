@@ -56,24 +56,24 @@ export class SectionService {
 
   }
 
-  enrollStudentId(userName: string, sectionId: string): Observable<User> {
+  enrollStudentId(studentId: string, sectionId: string): Observable<User> {
 
     console.log('inside observable : enrollStudentId');
 
     const url = COURSE_SEC_API_BASE_URL + ENROLL_STUDENT_SUFFIX
-      .replace('username', userName)
+      .replace('studentId', studentId)
       .replace('sectionId', sectionId);
     return this.http.post<User>(url, null);
 
 
   }
 
-  unrollStudentId(userName: string, sectionId: string): Observable<User> {
+  unrollStudentId(studentId: string, sectionId: string): Observable<User> {
 
     console.log('inside observable : unrollStudentId');
 
     const url = COURSE_SEC_API_BASE_URL + ENROLL_STUDENT_SUFFIX
-      .replace('username', userName)
+      .replace('studentId', studentId)
       .replace('sectionId', sectionId);
     return this.http.delete<User>(url);
 

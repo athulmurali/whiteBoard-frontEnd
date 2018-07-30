@@ -72,11 +72,11 @@ export class StudentProfileComponent implements OnInit {
 
   getEnrolledSectionsFromServer = () => {
     this.loading = true;
-    this.sectionService.getEnrolledSections(this.profile.username).subscribe(
+    this.sectionService.getEnrolledSections(this.profile._id).subscribe(
       data => {
         this.loading = false;
         this.enrolledSections = data;
-        this.filterEnrolledCourses(this.genereateCourseSectionArray);
+        this.filterEnrolledCourses(this.generateCourseSectionArray);
 
       },
       error => {
@@ -106,7 +106,7 @@ export class StudentProfileComponent implements OnInit {
     console.log(coursesAfterFilter);
   }
 
-   genereateCourseSectionArray = () => {
+  generateCourseSectionArray = () => {
 
      const c = this.enrolledCourses;
      this.courseSectionArr = this.enrolledSections.map(function(section, i) {
