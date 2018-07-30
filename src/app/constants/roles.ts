@@ -1,4 +1,5 @@
-export const USER_ROLES = Object.freeze({
+export const USER_ROLES = {
   'STUDENT': 'student',
   'ADMIN': 'admin',
-  'FACULTY': 'faculty', ...});
+  'FACULTY': 'faculty', ...};
+Object.freeze(USER_ROLES);
