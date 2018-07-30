@@ -30,7 +30,9 @@
 
           <div class="desc">{{profile.email}}</div>
           <div class="desc"> {{profile.phone}}</div>
+          <div class="desc">Address : {{profile.address}} </div>
           <div class="desc">Birthday : {{profile.dob}} </div>
+
 
         </div>
         <div class="bottom">
@@ -52,42 +54,40 @@
       </div>
 
       <div>
-        <div class="card  rounded">
-          <div class="cardheader">
-            Enrolled Courses
-          </div>
-          <div class="card-body">
 
-            <div *ngIf="profile.enrolledSections.length===0">No enrolled Courses</div>
-            <div>
-              <div class="card-deck">
+        <h3>
+          Enrolled courses
+        </h3>
 
-                <div class="card"  *ngFor="let courseSection of courseSectionArr">
-                  <img class="card-img-top" src="https://picsum.photos/300/100"
-                       alt="Card image cap">
-                  <div class="card-body">
 
-                    <a routerLink="/course/{{courseSection.course.id}}">
-                      <h5 class="card-title">
-                        {{courseSection.course.title}}</h5>
-                    </a>
+        <div *ngIf="profile.enrolledSections.length===0">No enrolled Courses</div>
+        <div>
+          <div class="card-deck">
 
-                    <h6 class="card-title">
-                      Section : {{courseSection.section.title}}</h6>
+            <div class="card"  *ngFor="let courseSection of courseSectionArr">
+              <img class="card-img-top" src="https://picsum.photos/300/100"
+                   alt="Card image cap">
+              <div class="card-body">
 
-                    <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-                  </div>
-                  <!--<div class="card-footer">-->
-                    <!--<small class="text-muted">Last updated 3 mins ago</small>-->
-                    <!--<a href="#" class="mx-2 btn btn-primary">Un-enroll</a>-->
+                <a routerLink="/course/{{courseSection.course.id}}">
+                  <h5 class="card-title">
+                    {{courseSection.course.title}}</h5>
+                </a>
 
-                  <!--</div>-->
-                </div>
+                <h6 class="card-title">
+                  Section : {{courseSection.section.title}}</h6>
+
+                <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               </div>
-            </div>
+              <!--<div class="card-footer">-->
+              <!--<small class="text-muted">Last updated 3 mins ago</small>-->
+              <!--<a href="#" class="mx-2 btn btn-primary">Un-enroll</a>-->
 
+              <!--</div>-->
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>
