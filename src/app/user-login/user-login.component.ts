@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {SectionService} from '../services/section.service';
-import {TOKEN_NAME} from '../constants/http';
 import {saveAuthToken} from '../common-utils';
+import {USER_ROLES} from '../constants/roles';
 
 @Component({
   selector: 'app-user-login',
@@ -29,7 +29,9 @@ export class UserLoginComponent implements OnInit {
       data => {
         saveAuthToken(data.token);
       console.log(data);
-      this.router.navigate(['/studentProfile']);
+      location.reload();
+
+        this.router.navigate(['/studentProfile']);
     },
         error => { this.loginError = true; console.log(error.toString()); });
   }

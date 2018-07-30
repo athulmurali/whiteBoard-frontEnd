@@ -34,10 +34,10 @@ export class CourseViewComponent implements OnInit {
   widgets: Widget[];
 
 
-  courseId  = -1;
-  availableSeats = 10;
-  test = true;
-  loading = false;
+  courseId          = -1;
+  availableSeats    = 10;
+  test              = true;
+  loading           = false;
   sectionSelected: Boolean;
 
   selectedModuleId: number;

@@ -5,6 +5,7 @@ import {Section} from '../models/Section';
 import {WAIT_TIME} from '../constants/api';
 import {UserService} from '../services/user.service';
 import {User} from '../models/User';
+import {USER_ROLES} from '../constants/roles';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class SectionListComponent implements OnInit, OnChanges {
   @Input()
   role: string;
 
+  DEFAULT_SECTION_NAME:string = 'section-1';
   profile: User;
   courseId: number;
   loading: boolean;
@@ -32,6 +34,9 @@ export class SectionListComponent implements OnInit, OnChanges {
   selectedSectionId: string;
 
   selectionType: string;
+
+   USER_ROLES =   USER_ROLES;
+
   constructor(private router: Router,
               private  route: ActivatedRoute,
               private sectionService: SectionService,
@@ -76,7 +81,7 @@ export class SectionListComponent implements OnInit, OnChanges {
   createNewSectionToServer = () => {
     this.loading = true;
     const createdSection: Section = new Section();
-    createdSection.title = 'section-UnNamed';
+    createdSection.title = this.DEFAULT_SECTION_NAME;
     createdSection.totalSeats = 100;
 
     this.sectionService.createNewSection(this.courseId, createdSection).subscribe(

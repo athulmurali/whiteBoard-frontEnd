@@ -10,21 +10,24 @@ import {SectionListComponent} from './section-list/section-list.component';
 import {PrivateContentBannerComponent} from './private-content-banner/private-content-banner.component';
 import {EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
 import {EnrollInSectionComponent} from './enroll-in-section/enroll-in-section.component';
+import {LogOutComponent} from './log-out/log-out.component';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: 'login', component: UserLoginComponent},
-    { path: 'register', component: UserRegisterComponent},
+    { path: 'login',  component: UserLoginComponent},
+    { path: 'logout', component: LogOutComponent},
+
+  { path: 'register', component: UserRegisterComponent},
     { path: 'studentProfile', component: StudentProfileComponent},
     { path: 'editProfile', component: EditUserProfileComponent},
 
-  { path: 'home', component: CourseGridComponent},
+   { path: 'home', component: CourseGridComponent},
     { path: 'privateContent', component: PrivateContentBannerComponent},
     { path: 'course/:courseId', component: CourseViewComponent},
     { path: 'course/:courseId/section', component : SectionListComponent},
 
-  { path: 'course/:courseId/enroll', component : EnrollInSectionComponent},
+   { path: 'course/:courseId/enroll', component : EnrollInSectionComponent},
 
   { path: 'course/:courseId/section/:sectionId/edit', component : EditSectionComponent},
 

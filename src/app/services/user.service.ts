@@ -30,7 +30,7 @@ export class UserService {
   // token added by interceptor
   // update and edit are used interchangeably
   updateProfile(user: User): Observable<any> {
-    return this.http.put(PROFILE_API_URL,user);
+    return this.http.put(PROFILE_API_URL, user);
   }
 
   // token added by interceptor
