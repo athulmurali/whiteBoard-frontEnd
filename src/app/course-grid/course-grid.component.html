@@ -24,7 +24,7 @@
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated 3 mins ago</small>
-          <a href="#" class="mx-2 btn btn-primary">Un-enroll</a>
+          <a routerLink="/course/{{courseSection.course.id}}/section" class="mx-2 btn btn-primary">Unroll</a>
 
         </div>
       </div>
@@ -38,9 +38,14 @@
            alt="Card image cap">
           <span class="badge   privateBadge glyphicon glyphicon-lock ml-auto" *ngIf="course.private">Private</span>
           <div class="card-body">
-            <h5 class="card-title">{{course.title}}</h5>
+
+            <a routerLink="/course/{{course.id}}">
+              <h5 class="card-title">{{course.title}}</h5>
+            </a>
+
             <!--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-            <a href="#" class="btn btn-primary">Enroll</a>
+            <a routerLink="/course/{{course.id}}/section"
+               class="mx-2 btn btn-primary text-white">Enroll</a>
           </div>
           <div class="card-footer">
             <small class="text-muted">Last updated 3 mins ago</small>
