@@ -82,10 +82,10 @@ export class SectionService {
 
 
 
-  getEnrolledSections(studentId: string): Observable<Section> {
+  getEnrolledSections(studentId: string): Observable<[Section]> {
     //
     const getEnrolledSectionsSuffix = GET_STUDENT_ENROLLED_SEC.replace('studentId', studentId.toString());
     console.log(getEnrolledSectionsSuffix);
-    return this.http.get<any>(COURSE_SEC_API_BASE_URL + getEnrolledSectionsSuffix);
+    return this.http.get<[Section]>(COURSE_SEC_API_BASE_URL + getEnrolledSectionsSuffix);
   }
 }

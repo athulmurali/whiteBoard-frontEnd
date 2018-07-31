@@ -20,9 +20,10 @@ export class CourseGridComponent implements OnInit {
   private coursesReceived: any;
 
   private enrolledSections: [Section];
-  private enrolledCourses: [Course];
-  private courseSectionArr: [CourseSection];
+  private enrolledCourses: Course[];
+  private courseSectionArr: CourseSection[];
 
+  temp: CourseSection;
 
 
   private  errorMessage: string;
@@ -90,8 +91,10 @@ export class CourseGridComponent implements OnInit {
     const coursesBeforeFilter = this.courses;
     console.log(coursesBeforeFilter);
 
-    const coursesAfterFilter = this.enrolledSections.map(section => {
-      const tempCourses = this.courses.filter(course => course.id === section.courseId);
+    let coursesAfterFilter: Course[];
+    coursesAfterFilter = this.enrolledSections.map(section => {
+      let tempCourses: Course[];
+       tempCourses = this.courses.filter(course => course.id === section.courseId);
       if (tempCourses) {
         const tempCourse = tempCourses[0];
         console.log(tempCourse);
@@ -108,10 +111,12 @@ export class CourseGridComponent implements OnInit {
 
     const c = this.enrolledCourses;
     this.courseSectionArr = this.enrolledSections.map(function(section, i) {
-      return {
-        section : section,
-        course : c[i]
-      };
+      // this.temp.section  = section;
+      // this.temp.course = c[i];
+      const temp = new CourseSection();
+      temp.section = section;
+      temp.course = c[i];
+      return temp;
     });
   }
 

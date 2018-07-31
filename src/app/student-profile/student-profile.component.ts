@@ -16,12 +16,12 @@ import {CourseSection} from '../models/CourseSection';
 export class StudentProfileComponent implements OnInit {
   errorMessage: string;
   profile: User;
-  enrolledCourses: [Course];
-  enrolledSections: [Section];
+  enrolledCourses: Course[];
+  enrolledSections: Section[];
 
-  courses: [Course];
+  courses: Course[];
   loading: boolean;
-  private courseSectionArr: [CourseSection];
+  private courseSectionArr: CourseSection[];
 
   constructor(private  userService: UserService,
               private courseService: CourseServiceService,
@@ -110,10 +110,10 @@ export class StudentProfileComponent implements OnInit {
 
      const c = this.enrolledCourses;
      this.courseSectionArr = this.enrolledSections.map(function(section, i) {
-       return {
-         section : section,
-         course : c[i]
-       };
+       const temp = new CourseSection();
+       temp.section = section;
+       temp.course = c[i];
+       return temp;
      });
    }
 

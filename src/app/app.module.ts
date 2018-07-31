@@ -23,20 +23,9 @@ import {EditUserProfileComponent} from './edit-user-profile/edit-user-profile.co
 import {EnrollInSectionComponent} from './enroll-in-section/enroll-in-section.component';
 import {LogOutComponent} from './log-out/log-out.component';
 
-
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
+import {MomentModule} from 'angular2-moment';
 // this includes the core NgIdleModule but includes keepalive providers for easy wireup
-
-import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
-
-
-
-import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
