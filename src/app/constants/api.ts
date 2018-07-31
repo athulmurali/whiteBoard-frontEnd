@@ -15,7 +15,7 @@ export const   GET_ENROLLED_SECTION = '/api/course/courseId/enrolledSectionId';
 export const  ENROLL_STUDENT_SUFFIX = '/api/student/studentId/section/sectionId';
 
 export const GET_STUDENT_ENROLLED_SEC = '/api/student/studentId/section'
-export const IS_USERNAME_AVAILABLE    = '/api/isUserIdAvailable/testUser1'
+export const IS_USERNAME_AVAILABLE    = '/api/isUserIdAvailable/username'
 
 export  const WAIT_TIME = 3000;
 

@@ -86,6 +86,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onTypeUsername( ) {
+    alert(this.user.username);
     this.isUserNameAvailable();
   }
     }
