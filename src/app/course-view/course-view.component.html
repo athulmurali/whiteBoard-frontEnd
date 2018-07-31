@@ -6,7 +6,7 @@
 
   <div class="col-sm-12 col-lg-4 justify-content-center">
 
-    <ul class="mx-2 list-group ">
+    <ul class="mx-2 list-group " *ngIf="!isEnrolled">
       <!--<li class="list-group-item d-flex align-items-center justify-content-around">-->
       <!--Available seats-->
       <!--<span class="align-content-end badge badge-primary badge-pill">{{availableSeats}}</span>-->
@@ -20,70 +20,73 @@
     <ul class="mx-2 list-group ">
 
 
-      <li *ngIf="false" class="list-group-item p-0 rounded-top">
+      <li *ngIf="!!isEnrolled" class="list-group-item p-0 rounded-top">
         <button class="btn-block btn-outline-danger pointer" (click)="onClickEnroll()"> Unroll</button>
       </li>
 
-      <li class="list-group-item active">Modules</li>
-      <li class="list-group-item a"  *ngFor="let module of modules" (click)="selectModule(module.id)"
-          [ngClass]="{active: selectedModuleId== module.id}">
-        {{module.title}} </li>
+      <div *ngIf="!!viewableInfo()">
+        <li class="list-group-item active" >Modules</li>
+        <li class="list-group-item a"  *ngFor="let module of modules" (click)="selectModule(module.id)"
+            [ngClass]="{active: selectedModuleId== module.id}">
+          {{module.title}} </li>
+      </div>
+
     </ul>
 
   </div>
-  <div *ngIf="">
+  <div *ngIf="!!!viewableInfo()">
     <app-private-content-banner></app-private-content-banner>
   </div>
-  <div *ngIf="" class="col-sm-12 col-lg-8">
-    <div *ngIf="!!selectedModuleId" >
-        <div class="row ">
-          <ul class= " nav nav-tabs nav-fill">
-            <li *ngFor="let lesson of lessons" class="nav-item" (click)="selectLesson(lesson.id)">
-              <a class="nav-link a" [ngClass]="{active: selectedLessonId== lesson.id}" >
-                {{lesson.title}}</a>
-            </li>
+  <div  class="col-sm-12 col-lg-8">
+    <div  >
+      <div class="row ">
+        <ul class= " nav nav-tabs nav-fill">
+          <li *ngFor="let lesson of lessons" class="nav-item" (click)="selectLesson(lesson.id)">
+            <a class="nav-link a" [ngClass]="{active: selectedLessonId== lesson.id}" >
+              {{lesson.title}}</a>
+          </li>
 
-          </ul>
+        </ul>
+      </div>
+      <div class="my-2 row text-dark">
+        <ul class="nav nav-pills nav-fill">
+
+          <li class="nav-item" *ngFor="let topic of topics " >
+            <a class="nav-link text-dark"  (click)="selectTopic(topic.id)"
+               [ngClass]="{active: selectedTopicId== topic.id}">{{topic.title}}</a>
+          </li>
+
+        </ul>
+      </div>
+      <div   *ngFor="let widget of widgets">
+        <h1 *ngIf="widget.widgetType=='Heading' && widget.size==1" >{{widget.text}}</h1>
+        <h2 *ngIf="widget.widgetType=='Heading' && widget.size==2" >{{widget.text}}</h2>
+        <h2 *ngIf="widget.widgetType=='Heading' && widget.size==3" >{{widget.text}}</h2>
+        <p *ngIf="widget.widgetType=='Paragraph'" >{{widget.text}}</p>
+        <div class="form-group" *ngIf="widget.widgetType=='Link'">
+          <a href="{{widget.text}}">{{widget.linkName}}</a>
         </div>
-        <div class="my-2 row text-dark">
-          <ul class="nav nav-pills nav-fill">
+        <ul  *ngIf="widget.widgetType=='List' && widget.listType=='unordered'">
+          <li class="justify-content-center" *ngFor="let item of widget.text.split('\n')">{{item}}</li>
 
-            <li class="nav-item" *ngFor="let topic of topics " >
-              <a class="nav-link text-dark"  (click)="selectTopic(topic.id)"
-                 [ngClass]="{active: selectedTopicId== topic.id}">{{topic.title}}</a>
-            </li>
+        </ul>
+        <ol  *ngIf="widget.widgetType=='List' && widget.listType=='ordered'">
+          <li  *ngFor="let item of widget.text.split('\n')">{{item}}</li>
 
-          </ul>
-        </div>
-        <div   *ngFor="let widget of widgets">
-          <h1 *ngIf="widget.widgetType=='Heading' && widget.size==1" >{{widget.text}}</h1>
-          <h2 *ngIf="widget.widgetType=='Heading' && widget.size==2" >{{widget.text}}</h2>
-          <h2 *ngIf="widget.widgetType=='Heading' && widget.size==3" >{{widget.text}}</h2>
-          <p *ngIf="widget.widgetType=='Paragraph'" >{{widget.text}}</p>
-          <div class="form-group" *ngIf="widget.widgetType=='Link'">
-            <a href="{{widget.text}}">{{widget.linkName}}</a>
-          </div>
-          <ul  *ngIf="widget.widgetType=='List' && widget.listType=='unordered'">
-            <li class="justify-content-center" *ngFor="let item of widget.text.split('\n')">{{item}}</li>
+        </ol>
 
-          </ul>
-          <ol  *ngIf="widget.widgetType=='List' && widget.listType=='ordered'">
-            <li  *ngFor="let item of widget.text.split('\n')">{{item}}</li>
-
-          </ol>
-
-          <img *ngIf="widget.widgetType=='Image'" src="{{widget.text}}" alt="{{widget.name}}">
+        <img *ngIf="widget.widgetType=='Image'" src="{{widget.text}}" alt="{{widget.name}}">
 
 
-        </div>
+      </div>
     </div>
 
-    <div *ngIf="!selectedModuleId">
+    <div *ngIf="viewableInfo()"  >
 
-      <div class="jumbotron jumbotron-fluid rounded">
+      <div class="jumbotron jumbotron-fluid rounded" *ngIf="!selectedTopicId">
         <div class="container">
           <h1 class="display-4">No Content</h1>
-          <p class="lead">Please click a module to view content </p>
+          <p class="lead">Please click a module->lesson->topic to view content </p>
         </div>
       </div>
 

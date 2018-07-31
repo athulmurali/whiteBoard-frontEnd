@@ -6,6 +6,10 @@ import {Module} from '../models/Module';
 import {Lesson} from '../models/Lesson';
 import {Topic} from '../models/Topic';
 import {Widget} from '../models/Widget';
+import {SectionService} from '../services/section.service';
+import {Section} from '../models/Section';
+import {UserService} from '../services/user.service';
+import {User} from '../models/User';
 
 @Component({
   selector: 'app-course-view',
@@ -44,10 +48,14 @@ export class CourseViewComponent implements OnInit {
   selectedTopicId: number;
 
   isLoggedIn = false;
+  isEnrolled = false;
+  enrolledSections: [Section];
+  profile: User;
 
 
   constructor(private  route: ActivatedRoute, private _courseService: CourseServiceService,
-              private router: Router) {
+              private router: Router, private sectionService: SectionService,
+              private userService: UserService) {
     this.route.params.subscribe(params => {
       this.loadCourse(params['courseId']);
     });
@@ -140,10 +148,12 @@ export class CourseViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    if ( ! this.getUserToken()) {this.isLoggedIn = true; }
+    if (  this.getUserToken()) {this.isLoggedIn = true;
+    this.getProfileFromServer();
+    }
 
-      this.getCourseFromServer();
-      this.getModulesFromServer();
+    this.getCourseFromServer();
+    this.getModulesFromServer();
   }
 
 
@@ -162,4 +172,50 @@ export class CourseViewComponent implements OnInit {
   }
 
 
+
+  getProfileFromServer = () => {
+    this.userService.getProfile().subscribe(data => {
+      console.log(data);
+      this.profile = data;
+      console.log(this.profile);
+
+        this.getEnrolledSectionsFromServer();
+    }, err => {
+      console.log(JSON.stringify(err));
+    });
+  }
+
+  getEnrolledSectionsFromServer = () => {
+    this.loading = true;
+    this.sectionService.getEnrolledSections(this.profile._id).subscribe(
+      data => {
+        this.loading = false;
+        this.enrolledSections = data;
+
+        this.isEnrolled = false;
+        this.enrolledSections.map(section => {
+          if (section.courseId === this.selectedCourse.id) {
+            this.isEnrolled = true;
+          }
+        });
+
+      },
+      error => {
+        this.loading = false;
+
+      }
+    );
+
+  }
+
+
+
+  viewableInfo = () => {
+    console.log('selectedCourse.is priv' + this.selectedCourse.private);
+    console.log('enrolled' + this.isEnrolled);
+    const result = (!this.selectedCourse.private || this.isEnrolled);
+    console.log('result : ' + result);
+    return result;
+
+  }
 }
