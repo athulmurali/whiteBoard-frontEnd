@@ -14,8 +14,8 @@ import {USER_ROLES} from '../constants/roles';
 
 export class UserLoginComponent implements OnInit {
 
-  private loginError = false;
-  private userCredentials = {
+   loginError = false;
+   userCredentials = {
     username : '',
     password : ''
   };

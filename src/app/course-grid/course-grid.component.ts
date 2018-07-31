@@ -14,14 +14,14 @@ import {CourseSection} from '../models/CourseSection';
   providers: [CourseServiceService]
 })
 export class CourseGridComponent implements OnInit {
-  private courses: Course[];
+  courses: Course[];
   private loaded: boolean;
   private loading: any;
   private coursesReceived: any;
 
   private enrolledSections: [Section];
   private enrolledCourses: Course[];
-  private courseSectionArr: CourseSection[];
+  courseSectionArr: CourseSection[];
 
   temp: CourseSection;
 

@@ -17,16 +17,16 @@ export class EditSectionComponent implements OnInit {
               private sectionService: SectionService,
               private location: Location) { }
 
-  private section: Section;
-  private currentSectionId: number;
-  private courseId: number;
-  private loading: boolean;
-  private updateSuccess: boolean;
+  section: Section;
+  currentSectionId: number;
+   courseId: number;
+  loading: boolean;
+  updateSuccess: boolean;
 
 
-  private deletionError: boolean;
-  private errorMessage: string;
-  private deletionSuccess: boolean;
+   deletionError: boolean;
+   errorMessage: string;
+  deletionSuccess: boolean;
 
 
   onClickSubmit() {

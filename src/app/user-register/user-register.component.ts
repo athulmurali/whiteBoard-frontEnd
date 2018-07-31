@@ -38,7 +38,7 @@ export class UserRegisterComponent implements OnInit {
   private registerError: boolean;
 
   private usernameAvailable: boolean;
-  private isRoleSelected: boolean;
+  isRoleSelected: boolean;
   onclickRegister() {
     console.log(this.user);
     alert('registering!');

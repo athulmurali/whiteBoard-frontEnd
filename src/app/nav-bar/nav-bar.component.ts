@@ -9,7 +9,7 @@ import {User} from '../models/User';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  private profile: User;
+  profile: User;
 
   constructor(private userService: UserService) { }
 
