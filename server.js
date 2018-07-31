@@ -6,11 +6,11 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname +'./dist/exam-manager'));
-
+app.use(express.static(`${__dirname}/front-end/dist/`));
 app.get('/*', function(req,res) {
 
-  res.sendFile(path.join(__dirname,'/dist/exam-manager.html'));
+  res.sendFile(`./front-end/dist/index.html`);
+  // load the single view file (angular will handle the page changes on the front-end)
 });
 
 console.log("listening.... ")
