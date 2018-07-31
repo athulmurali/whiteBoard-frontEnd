@@ -58,6 +58,18 @@ export class StudentProfileComponent implements OnInit {
 
   }
 
+
+  handleClickDeleteProfile = () => {
+
+    this.deleteProfileFromServer(this.navigateToLogout);
+
+    }
+
+  navigateToLogout = () => {
+    this.router.navigate(['/logout']);
+
+  }
+
   getAllCoursesFromServer = () => {
     this.loading = true;
     console.log('Getting course list from server ......');
@@ -116,6 +128,20 @@ export class StudentProfileComponent implements OnInit {
        return temp;
      });
    }
+
+
+ deleteProfileFromServer = (cb) => {
+    this.userService.deleteProfile().subscribe(data => {
+      console.log(data);
+      this.profile = data;
+      console.log(this.profile);
+      if (cb) { cb(); }
+
+    }, err => {
+      this.errorMessage = err.error.message;
+      console.log(JSON.stringify(err));
+    });
+  }
 
 
 }

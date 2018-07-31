@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     { path: 'login',  component: UserLoginComponent},
     { path: 'logout', component: LogOutComponent},
 
-  { path: 'register', component: UserRegisterComponent},
+    { path: 'register', component: UserRegisterComponent},
     { path: 'studentProfile', component: StudentProfileComponent},
     { path: 'editProfile', component: EditUserProfileComponent},
 

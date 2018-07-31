@@ -28,6 +28,11 @@ export class UserService {
     return this.http.get(PROFILE_API_URL);
   }
 
+  deleteProfile(): Observable<any> {
+    //
+    return this.http.delete(PROFILE_API_URL);
+  }
+
   // token added by interceptor
   // update and edit are used interchangeably
   updateProfile(user: User): Observable<any> {

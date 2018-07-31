@@ -1,72 +1,82 @@
+<div *ngIf="!!profile">
 
-
-<div  *ngIf="!selectionType">
-  <div  *ngIf="loading"  class="container-fluid">
-    <h2>Loading   </h2>
-  </div>
-  <div  *ngIf="!loading" class="container-fluid">
-    <div class="row px-2">
-      <h3 class="mr-auto">Sections</h3>
-      <button *ngIf="profile.role== USER_ROLES.ADMIN" class="btn-success rounded pointer" (click)="createNewSectionToServer()"> Add section</button>
+  <div  *ngIf="!selectionType">
+    <div  *ngIf="loading"  class="container-fluid">
+      <h2>Loading   </h2>
     </div>
-
-    <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Created!</h1>
-        <p class="lead">New Section created. Redirecting to edit the new course </p>
+    <div  *ngIf="!loading" class="container-fluid">
+      <div class="row px-2">
+        <h3 class="mr-auto">Sections</h3>
+        <button *ngIf="profile.role== USER_ROLES.ADMIN" class="btn-success rounded pointer" (click)="createNewSectionToServer()"> Add section</button>
       </div>
-    </div>
-    <div *ngIf="error" class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Error!</h1>
-        <p class="lead">{{errorMessage}} </p>
+
+      <div *ngIf="creationSuccess" class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Created!</h1>
+          <p class="lead">New Section created. Redirecting to edit the new course </p>
+        </div>
       </div>
-    </div>
-    <div  class="row  card-header card-columns rounded  card-body">
-      <div class="col-sm-12 col-lg-6">   <h5>Title</h5></div>
-      <div class="col-sm-12 col-lg-2 " > <h5 >Total Seats</h5></div>
-      <div class="col-sm-12 col-lg-2 ">  <h5 >Enrolled Seats</h5></div>
-      <div class="col-sm-12 col-lg-2 ">  <h5 >Available Seats</h5></div>
-    </div>
-    <div  class="row  card-body" *ngFor="let section of sectionsFromServer">
+      <div *ngIf="error" class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Error!</h1>
+          <p class="lead">{{errorMessage}} </p>
+        </div>
+      </div>
+      <div  class="row  card-header card-columns rounded  card-body">
+        <div class="col-sm-12 col-lg-6">   <h5>Title</h5></div>
+        <div class="col-sm-12 col-lg-2 " > <h5 >Total Seats</h5></div>
+        <div class="col-sm-12 col-lg-2 ">  <h5 >Enrolled Seats</h5></div>
+        <div class="col-sm-12 col-lg-2 ">  <h5 >Available Seats</h5></div>
+      </div>
+      <div  class="row  card-body" *ngFor="let section of sectionsFromServer">
         <div  class="col-lg-6 col-sm-12 row">
           <div  class="col-lg-6 col-sm-12">
             <h5>{{section.title}}</h5>
             <button class="btn-outline-primary rounded pointer"
-            (click)="onClickSection(section._id)"
-              *ngIf="profile && profile.role == USER_ROLES.ADMIN">
+                    (click)="onClickSection(section._id)"
+                    *ngIf="profile && profile.role == USER_ROLES.ADMIN">
               Edit
             </button>
           </div>
           <div  class="col-lg-6 col-sm-12">
-          <div class="pull-left">
-          <button *ngIf="!isSectionIdErolled(section._id)"
-              class="btn-block btn-outline-success rounded pointer"
+            <div class="pull-left">
+              <button *ngIf="!isSectionIdErolled(section._id)"
+                      class="btn-block btn-outline-success rounded pointer"
 
-                    (click)="selectEnroll(section._id)" >enroll</button>
-            <button *ngIf="isSectionIdErolled(section._id)"
-              class="btn-block btn-outline-danger rounded pointer"
-                    (click)="selectUnroll(section._id)" >unroll</button>
+                      (click)="selectEnroll(section._id)" >enroll</button>
+              <button *ngIf="isSectionIdErolled(section._id)"
+                      class="btn-block btn-outline-danger rounded pointer"
+                      (click)="selectUnroll(section._id)" >unroll</button>
+            </div>
+            <div class="pull-right">
+              <div *ngIf="isSectionIdErolled(section._id)" class="badge-danger rounded px-2">enrolled</div>
+
+            </div>
+
           </div>
-          <div class="pull-right">
-            <div *ngIf="isSectionIdErolled(section._id)" class="badge-danger rounded px-2">enrolled</div>
-
-          </div>
-
-        </div>
         </div>
         <div class="col-lg-2  col-sm-12"> <h5 >{{section.totalSeats}}</h5></div>
         <div class="col-lg-2  col-sm-12"> <h5 >{{section.enrolledStudents.length}}</h5></div>
         <div class="col-lg-2  col-sm-12 "> <h5 >{{section.totalSeats - section.enrolledStudents.length}}</h5></div>
+      </div>
     </div>
   </div>
+
+  <div *ngIf="selectionType && profile">
+    <app-enroll-in-section
+      selectedSectionId="{{selectedSectionId}}"
+      type="{{selectionType}}"
+      [profile]= profile></app-enroll-in-section>
+
+  </div>
 </div>
+<div *ngIf="!profile">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Login required</h1>
+      <p class="lead">Please login to view this content</p>
+    </div>
+  </div>
 
-<div *ngIf="selectionType && profile">
-  <app-enroll-in-section
-    selectedSectionId="{{selectedSectionId}}"
-    type="{{selectionType}}"
-    [profile]= profile></app-enroll-in-section>
 
 </div>
-
