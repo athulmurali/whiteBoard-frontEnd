@@ -37,6 +37,7 @@ export class UserRegisterComponent implements OnInit {
   private user: User;
   private registerError: boolean;
 
+  private usernameAvailable: boolean;
   private isRoleSelected: boolean;
   onclickRegister() {
     console.log(this.user);
@@ -71,4 +72,20 @@ export class UserRegisterComponent implements OnInit {
     );
   }
 
-}
+  isUserNameAvailable = () => {
+    this.userService.isUsernameAvailable(this.user.username).subscribe(
+      data => {
+        this.usernameAvailable = true;
+        console.log(this.usernameAvailable);
+      },
+      error => {
+        this.usernameAvailable = false;
+        this.errorMessage = error.error.message;
+      }
+      );
+  }
+
+  onTypeUsername( ) {
+    this.isUserNameAvailable();
+  }
+    }

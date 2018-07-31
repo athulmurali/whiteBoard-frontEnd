@@ -8,8 +8,8 @@
     </div>
 
     <div class="mx-auto  align-content-center card-deck">
-      <div class="card roleCard" *ngFor="let role of roles" style=""  (click)="selectRole(role)">
-        <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card roleCard align-items-lg-center align-content-lg-center justify-content-lg-center" *ngFor="let role of roles" style=""  (click)="selectRole(role)">
+        <!--<img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
           <h1 class="card-text">{{role}}</h1>
         </div>
@@ -38,9 +38,16 @@
       <div class="row my-lg-1">
         <div class="col-md-6 col-sm-12  form__group">
           <input type="text" placeholder="Username" class="form__input"  id="username"
+                 (change)="onTypeUsername()"
+
                  name="username" [(ngModel)]="user.username"/>
           <small id="userNameHelp" class="text-muted">
             userName must be alphanumeric
+          </small>
+
+          <small id="userNameAvailablity" class="text-muted"
+          *ngIf="!usernameAvailable">
+            userName taken!
           </small>
 
         </div>
@@ -114,6 +121,16 @@
 
         </div>
 
+        <div  class="col-md-6 col-sm-12 form__group">
+
+          <input type="text" placeholder="address" class="form__input" id="address"
+                 name="address" [(ngModel)]="user.address"/>
+
+        </div>
+
+      </div>
+
+      <div class="row my-lg-1 vertical-center">
         <div class="col-md-6 col-sm-12 form_group">
           <label> Date of birth</label>
 
@@ -125,8 +142,8 @@
 
 
 
-
       <button class="btn" type="button" id="register"
+              disabled="{{!usernameAvailable}}"
       (click)="onclickRegister()">Register</button>
     </form>
 

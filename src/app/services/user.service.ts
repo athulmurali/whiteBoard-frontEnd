@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs';
 import {User} from '../models/User';
+import {IS_USERNAME_AVAILABLE} from '../constants/api';
 const BASE_URL = 'https://mean-exam-manager-backend.herokuapp.com';
 
 const LOGIN_API_URL = BASE_URL + '/api/login';
@@ -37,6 +38,10 @@ export class UserService {
   registerUser(user: User): Observable<any> {
     //
     return this.http.post<User>(REGISTER_API_URL, user);
+  }
+
+  isUsernameAvailable(username: string): Observable<any> {
+    return this.http.get<any>( BASE_URL +  IS_USERNAME_AVAILABLE.replace('username', username));
   }
 
 

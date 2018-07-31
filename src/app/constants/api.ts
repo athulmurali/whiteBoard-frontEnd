@@ -1,4 +1,8 @@
 export  const COURSE_SEC_API_BASE_URL = 'https://mean-exam-manager-backend.herokuapp.com';
+export const  JAVA_SERVER_BASE_URL = 'https://neu-course-manager.herokuapp.com'
+
+
+
 export  const  SECTION_URL = '/api/course/courseId/section';
 export  const  GET_SECTION_SUFFIX = '/api/section/sectionId';
 
@@ -11,6 +15,7 @@ export const   GET_ENROLLED_SECTION = '/api/course/courseId/enrolledSectionId';
 export const  ENROLL_STUDENT_SUFFIX = '/api/student/studentId/section/sectionId';
 
 export const GET_STUDENT_ENROLLED_SEC = '/api/student/studentId/section'
+export const IS_USERNAME_AVAILABLE    = '/api/isUserIdAvailable/testUser1'
 
 export  const WAIT_TIME = 3000;
 
