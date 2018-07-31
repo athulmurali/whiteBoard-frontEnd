@@ -43,6 +43,8 @@ export class CourseViewComponent implements OnInit {
   selectedLessonId: number;
   selectedTopicId: number;
 
+  isLoggedIn = false;
+
 
   constructor(private  route: ActivatedRoute, private _courseService: CourseServiceService,
               private router: Router) {
@@ -138,9 +140,7 @@ export class CourseViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    if ( ! this.getUserToken()) {
-      this.router.navigate(['/privateContent']);
-    }
+    if ( ! this.getUserToken()) {this.isLoggedIn = true; }
 
       this.getCourseFromServer();
       this.getModulesFromServer();

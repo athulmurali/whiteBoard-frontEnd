@@ -3,6 +3,7 @@
 
 <div >
 
+
   <router-outlet>
     <app-nav-bar></app-nav-bar>
     <!--<app-dialog-overview-example></app-dialog-overview-example>-->
@@ -11,6 +12,11 @@
 
   </router-outlet>
 
+  <div class="jumbotron-fluid " *ngIf="isLoggedIn">
+    <p><strong>{{idleState}}</strong></p>
+    <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing | amTimeAgo}}</strong></small></p>
+    <button (click)="reset()" *ngIf="timedOut">Restart</button>
+  </div>
 
 </div>
 
