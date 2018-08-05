@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../models/User';
 import {UserService} from '../services/user.service';
 import {saveAuthToken} from '../common-utils';
@@ -31,7 +31,6 @@ export class UserRegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
 
   private passwordConfirmed = false;
-  private userNameTaken = false;
   private errorMessage: any;
 
   private user: User;
@@ -86,7 +85,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onTypeUsername( ) {
-    alert(this.user.username);
+    // alert(this.user.username);
     this.isUserNameAvailable();
   }
     }
